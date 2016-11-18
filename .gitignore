@@ -1,0 +1,12 @@
+# dotfiles
+.DS_Store
+.env
+
+# ignore files/folders
+node_modules
+www/dev.js
+
+# logs
+npm-debug.log
+yarn-error.log
+/coverage
