@@ -1,40 +1,108 @@
-import _ from 'lodash'
 import React, { Component } from 'react'
-import { Provider, observer } from 'mobx-react'
-import DevTools from 'mobx-react-devtools'
+import { Router, Route, Link, IndexRoute, hashHistory, browserHistory, DefaultRoute, IndexLink } from 'react-router'
+import Headroom from 'react-headroom'
 
-class Root extends React.Component {
+class App extends Component {
   render () {
-    return       <header className="cd-auto-hide-header">
+    return (
+      <Router history={hashHistory}>
+        <Route path='/' component={Container}>
+          <IndexRoute component={Home} />
+          <Route path='pattern' component={Pattern}>
+            <IndexRoute component={Component1} />
+            <Route path='component2' component={Component2} />
+            <Route path='component3' component={Component3} />
+            <Route path='component4' component={Component4} />
+          </Route>
+          <Route path='/about(/:name)' component={About} />
+          <Route path='/namedComponent' component={NamedComponents}>
+            <IndexRoute components={{ title: Title, subTitle: SubTitle }} />
+          </Route>
+          <Route path='*' component={NotFound} />
+        </Route>
+      </Router>
+    )
+  }
+}
+
+const Nav = () => ( <div>
         <div className="logo"><a href="#0"><img src="img/cd-logo.svg" alt="Logo" /></a></div>
         <nav className="cd-primary-nav">
-          <a href="#cd-navigation" className="nav-trigger">
+          <a className="nav-trigger">
             <span>
               <em aria-hidden="true" />
               Menu
             </span>
           </a> 
           <ul id="cd-navigation">
-            <li><a href="#0">Design Principles</a></li>
-            <li><a href="#0">Pattern Library</a></li>
-            <li><a href="#0">Brand</a></li>
-            <li><a href="#0">Print</a></li>
-            <li><a href="#0">Research</a></li>
+            <li><IndexLink activeClassName='active' to='/'>Design Principles</IndexLink></li>
+            <li><IndexLink activeClassName='active' to='/address'>Address</IndexLink></li>
+            <li><IndexLink activeClassName='active' to='/about'>About</IndexLink></li>
+
+            <li><IndexLink activeClassName='active' to='/pattern'>Pattern Library</IndexLink></li>
+            <li><IndexLink activeClassName='active' to='/Brand'>Brand</IndexLink></li>
+            <li><IndexLink activeClassName='active' to='/print'>Print</IndexLink></li>
+            <li><IndexLink activeClassName='active' to='/research'>Research</IndexLink></li>
+            <li><IndexLink activeClassName='active' to='/namedComponent'>Named Components</IndexLink></li>
           </ul>
-        </nav> 
-        <nav className="cd-secondary-nav">
-          <ul>
-            <li><a className="active" href="#0">Intro</a></li>
-            <li><a href="#0">Organisms</a></li>
-            <li><a href="#0">Molecules</a></li>
-            <li><a href="#0">Atoms</a></li>
-          </ul>
-        </nav> 
-      </header> 
+        </nav>
+      </div>
+)
 
-  }
-}
+const Container = (props) =>
+<div>
+  <Headroom>
+    <header className="cd-auto-hide-header">
+    <Nav />
+    
+    </header> 
+  </Headroom>
+  <div className="container">
+    {props.children}
+  </div>
+</div>
+const Home = () => <h1>Hello from Design Principles</h1>
 
+const Pattern = (props) => <div>
+  <nav className="cd-secondary-nav">
+    <ul>
+      <li><Link to='/pattern/Component2'>Atoms</Link></li>
+      <li><Link to='/pattern/Component3'>Molecules</Link></li>
+      <li><Link to='/pattern/component4'>Orginisms</Link></li>
+    </ul>
+  </nav>
+  {props.children}
+  </div>
 
+  const Component1 = () => <h3>Test Component1! ALL</h3>
+  const Component2 = () => <h3>Test Component2! Atoms</h3>
+  const Component3 = () => <h3>Test Component2! Molecules</h3>
+  const Component4 = () => <h3>Test Component2! Orginisms</h3>
 
-export default Root
+const About = (props) => (
+  <div>
+    <h3>Welcome to the About Page</h3>
+    { props.params.name && <h2>Hello, {props.params.name}</h2>}
+  </div>
+)
+
+const NotFound = () => <h1>404.. This page is not found!</h1>
+
+// Named Components
+
+const NamedComponents = (props) => (
+  <div>
+    {props.title}<br />
+    {props.subTitle}
+  </div>
+)
+
+  const Title = () => (
+    <h1>Hello from Title Component</h1>
+  )
+
+  const SubTitle = () => (
+    <h1>Hello from SubTitle Component</h1>
+  )
+
+export default App

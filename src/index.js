@@ -1,33 +1,14 @@
 import _ from 'lodash'
 import React from 'react'
-import { render } from 'react-dom'
+import ReactDOM from 'react-dom'
+import Headroom from 'react-headroom'
+import { Router, Route, Link, IndexRoute, hashHistory, browserHistory, DefaultRoute, IndexLink } from 'react-router'
+
 import App from './components/App'
-import { Router, hashHistory } from 'react-router'
 
 import './styles/index.scss'
 
-_.mixin({
-  isTrf (trf) {
-    const regex = /[trfTRF]{3}\d+\.??\d{1,2}/
-    return _.isEmpty(_.clone(trf).replace(regex, ''))
-  }
-})
-
-const routes = {
-  path: '/',
-  component: App,
-  childRoutes: [
-    {
-      path: 'patient/:trf',
-      component: App
-    }
-  ]
-}
-
-render(
-  <Router history={hashHistory} routes={routes} />,
-  document.getElementById('root')
-)
+ReactDOM.render(<App />, document.getElementById('root'))
 
 if (module.hot) {
   module.hot.accept()
