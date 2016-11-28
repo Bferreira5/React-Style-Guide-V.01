@@ -40,6 +40,7 @@
     "eslint": "^3.7.0",
     "eslint-plugin-react": "^6.3.0",
     "jest": "^16.0.1",
+    "node-normalize-scss": "^1.4.0",
     "react-addons-test-utils": "^15.3.2",
     "react-hot-loader": "^3.0.0-beta.5",
     "react-test-renderer": "^15.3.2",

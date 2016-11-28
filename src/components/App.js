@@ -28,7 +28,7 @@ class App extends Component {
 const Nav = () => ( <div>
         <div className="logo"><a href="#0"><img src="img/cd-logo.svg" alt="Logo" /></a></div>
         <nav className="cd-primary-nav">
-          <a className="nav-trigger">
+          <a onClick={() => alert('click')} className="nav-trigger">
             <span>
               <em aria-hidden="true" />
               Menu
@@ -52,13 +52,14 @@ const Nav = () => ( <div>
 const Container = (props) =>
 <div>
   <Headroom>
-    <header className="cd-auto-hide-header">
+    <header className="cd-auto-hide-header nav-open">
     <Nav />
     
     </header> 
+    {props.children}
   </Headroom>
   <div className="container">
-    {props.children}
+
   </div>
 </div>
 const Home = () => <h1>Hello from Design Principles</h1>
