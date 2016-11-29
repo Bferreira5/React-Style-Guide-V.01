@@ -4,9 +4,6 @@ import { Provider, observer } from 'mobx-react'
 import DevTools from 'mobx-react-devtools'
 import Headroom from 'react-headroom'
 
-
-
-
 class App extends Component {
 
   render () {
@@ -14,7 +11,7 @@ class App extends Component {
       <Router history={hashHistory}>
         <Route path='/' component={Main}>
           <IndexRoute component={Home} />
-          <Route path='pattern' component={Pattern}>
+          <Route path='pattern' component={Pattern} subnav={Pattern}>
             <IndexRoute component={Pattern1} />
             <Route path='pattern2' component={Pattern2} />
             <Route path='pattern3' component={Pattern3} />
@@ -26,8 +23,8 @@ class App extends Component {
             <Route path='brand3' component={Brand3} />
             <Route path='brand3' component={Brand4} />
           </Route>
-          <IndexRoute component={Print} />
-          <IndexRoute component={Research} />
+          <Route path="/print" component={Print}/>
+          <Route path="/research" component={Research}/>
           <Route path='*' component={NotFound} />
         </Route>
       </Router>
@@ -35,18 +32,31 @@ class App extends Component {
   }
 }
 
+const Main = (props) =>
+  <div>
+    <Headroom>
+      <header className="cd-auto-hide-header">
+      <Nav />
+      {props.children.props.route.subnav}
+      </header>
+    </Headroom>
+    <div className="container">
+    {props.children}
+    </div>
+  </div>
+
+  const Home = () => <div><h1>Hello from Design Principles</h1></div>
+
+  const Print = () => <div><h1>Hello from Design Principles</h1></div>
+
+  const Research = () => <div><h1>Hello from Design Principles</h1></div>
 
 
 const Nav = () => ( <div>
 
-        <div className="logo"><a href="#0"><img src="img/cd-logo.svg" alt="Logo" /></a></div>
+        <div className="logo"><a href="#0"><img src="" alt="Logo" /></a></div>
         <nav className="cd-primary-nav">
-          <a  className="nav-trigger">
-            <span>
-              <em aria-hidden="true" />
-              Menu
-            </span>
-          </a> 
+        <NavTrigger />
           <ul id="cd-navigation">
             <li><IndexLink activeClassName='active' to='/'>Design Principles</IndexLink></li>
             <li><IndexLink activeClassName='active' to='/pattern'>Pattern Library</IndexLink></li>
@@ -58,23 +68,16 @@ const Nav = () => ( <div>
       </div>
 )
 
-const Main = (props) =>
-  <div>
-    <Headroom>
-      <header className="cd-auto-hide-header">
-      <Nav />
-      {props.children}
-      </header>
-    </Headroom>
-    <div className="container">
-    </div>
-  </div>
 
-const Home = () => <h1>Hello from Design Principles</h1>
 
-const Print = () => <h1>Hello from Print Principles</h1>
+const NavTrigger = () => 
+  <a onClick={() => (console.log("test"))} className="nav-trigger">
+    <span>
+      <em aria-hidden="true" />
+      Menu
+    </span>
+  </a>
 
-const Research = () => <h1>Hello from Research Principles</h1>
 
 const Pattern = (props) =>  <div>
   <nav className="cd-secondary-nav">
@@ -112,6 +115,5 @@ const Brand = (props) =>  <div>
 const NotFound = () => <h1>404.. This page is not found!</h1>
 
 // Named Components
-
 
 export default App
