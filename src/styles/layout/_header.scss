@@ -1,7 +1,8 @@
-// -----------------------------------------------------------------------------
-// This file contains all styles related to the header of the site/application.
-// -----------------------------------------------------------------------------
+/* -------------------------------- 
 
+Primary style
+
+-------------------------------- */
 *, *::after, *::before {
   box-sizing: border-box;
 }
@@ -30,6 +31,10 @@ a {
 
 -------------------------------- */
 .cd-auto-hide-header {
+  position: fixed;
+  z-index: 2;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 60px;
   background-color: #ffffff;
@@ -42,21 +47,21 @@ a {
   transition: transform .5s;
   transition: transform .5s, -webkit-transform .5s;
 }
-// .cd-auto-hide-header::after {
-//   clear: both;
-//   content: "";
-//   display: block;
-// }
-// .cd-auto-hide-header.is-hidden {
-//   -webkit-transform: translateY(-100%);
-//       -ms-transform: translateY(-100%);
-//           transform: translateY(-100%);
-// }
-// @media only screen and (min-width: 1024px) {
-//   .cd-auto-hide-header {
-//     height: 80px;
-//   }
-// }
+.cd-auto-hide-header::after {
+  clear: both;
+  content: "";
+  display: block;
+}
+.cd-auto-hide-header.is-hidden {
+  -webkit-transform: translateY(-100%);
+      -ms-transform: translateY(-100%);
+          transform: translateY(-100%);
+}
+@media only screen and (min-width: 1024px) {
+  .cd-auto-hide-header {
+    height: 80px;
+  }
+}
 
 .cd-auto-hide-header .logo,
 .cd-auto-hide-header .nav-trigger {
@@ -223,8 +228,8 @@ a {
 .nav-open .cd-primary-nav ul,
 .cd-primary-nav ul:target {
   /* 
-  	show primary nav - mobile only 
-  	:target is used to show navigation on no-js devices
+    show primary nav - mobile only 
+    :target is used to show navigation on no-js devices
   */
   display: block;
 }
@@ -285,7 +290,6 @@ a {
   display: -ms-flexbox;
   display: flex;
   padding: 0 5%;
-  margin: 0;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
 }
@@ -410,8 +414,8 @@ Main content
 }
 
 /*
-	adjust the positioning of in-page links
-	http://nicolasgallagher.com/jump-links-and-viewport-positioning/
+  adjust the positioning of in-page links
+  http://nicolasgallagher.com/jump-links-and-viewport-positioning/
 */
 .cd-main-content.sub-nav :target::before,
 .cd-main-content.sub-nav-hero :target::before {

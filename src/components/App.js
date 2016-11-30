@@ -3,72 +3,95 @@ import { Router, Route, Link, IndexRoute, hashHistory, browserHistory, DefaultRo
 import { Provider, observer } from 'mobx-react'
 import DevTools from 'mobx-react-devtools'
 import Headroom from 'react-headroom'
+import Switcher from 'switcheroo'
+
+
 
 class App extends Component {
-
-  render () {
+  render() {
     return (
-      <Router history={hashHistory}>
-        <Route path='/' component={Main}>
-          <IndexRoute component={Home} />
-          <Route path='pattern' component={Pattern} subnav={Pattern}>
-            <IndexRoute component={Pattern1} />
-            <Route path='pattern2' component={Pattern2} />
-            <Route path='pattern3' component={Pattern3} />
-            <Route path='pattern4' component={Pattern4} />
-          </Route>
-          <Route path='brand' component={Brand}>
-            <IndexRoute component={Brand1} />
-            <Route path='brand2' component={Brand2} />
-            <Route path='brand3' component={Brand3} />
-            <Route path='brand3' component={Brand4} />
-          </Route>
-          <Route path="/print" component={Print}/>
-          <Route path="/research" component={Research}/>
-          <Route path='*' component={NotFound} />
-        </Route>
-      </Router>
-    )
+      <div>
+      <TopBar/>
+      <main className="cd-main-content sub-nav">
+        <MainContent />
+      </main>
+      </div>
+    );
   }
 }
 
-const Main = (props) =>
-  <div>
-    <Headroom>
-      <header className="cd-auto-hide-header">
-      <Nav />
-      {props.children.props.route.subnav}
-      </header>
-    </Headroom>
-    <div className="container">
-    {props.children}
-    </div>
-  </div>
+class TopBar extends Component {
+    constructor(props){
+      super(props);
+      this.state={isHide:false};
+      this.hideBar = this.hideBar.bind(this)
+    }
+    hideBar(){
+       let {isHide} = this.state
+       window.scrollY > this.prev?
+       !isHide && this.setState({isHide:true})
+       :
+       isHide && this.setState({isHide:false})
 
-  const Home = () => <div><h1>Hello from Design Principles</h1></div>
+       this.prev = window.scrollY;
+    }
+    componentDidMount(){
+        window.addEventListener('scroll',this.hideBar);
+    }
+    componentWillUnmount(){
+         window.removeEventListener('scroll',this.hideBar);
+    }
+    render(){
 
-  const Print = () => <div><h1>Hello from Design Principles</h1></div>
+        let classHide=this.state.isHide?"is-hidden":""
+        return (
+          <header className={"cd-auto-hide-header "+classHide}>
+            <MainNav />
+            <SubNav />
+          </header>
+        );
+    }
+}
 
-  const Research = () => <div><h1>Hello from Design Principles</h1></div>
 
-
-const Nav = () => ( <div>
-
-        <div className="logo"><a href="#0"><img src="" alt="Logo" /></a></div>
+class MainNav extends Component {
+  render() {
+    return (
+      <div>
+        <div className="logo"><a href="#0"><img src="#/" alt="Logo" /></a></div>
         <nav className="cd-primary-nav">
-        <NavTrigger />
+          <NavTrigger />
           <ul id="cd-navigation">
-            <li><IndexLink activeClassName='active' to='/'>Design Principles</IndexLink></li>
-            <li><IndexLink activeClassName='active' to='/pattern'>Pattern Library</IndexLink></li>
-            <li><IndexLink activeClassName='active' to='/brand'>Brand</IndexLink></li>
-            <li><IndexLink activeClassName='active' to='/print'>Print</IndexLink></li>
-            <li><IndexLink activeClassName='active' to='/research'>Research</IndexLink></li>
+          <li><a href="#/design">Design Principles</a></li>
+          <li><a href="#/pattern">Pattern Library</a></li>
+          <li><a href="#/brand">Brand</a></li>
+          <li><a href="#/print">Print</a></li>
+          <li><a href="#/research">Research</a></li>
           </ul>
         </nav>
       </div>
-)
+    );
+  }
+}
 
-
+function SubNav() {
+  return (
+    <Switcher>
+      <div path="/"></div>
+      <div path="/design"></div>
+      <div path="/pattern"><SubNavPattern /></div>
+        <div path="/pattern/atoms"><SubNavPattern /></div>
+        <div path="/pattern/molecules"><SubNavPattern /></div>
+        <div path="/pattern/organisms"><SubNavPattern /></div>
+      <div path="/brand"><SubNavBrand /></div>
+        <div path="/brand/atoms"><SubNavBrand /></div>
+        <div path="/brand/molecules"><SubNavBrand /></div>
+        <div path="/brand/organisms"><SubNavBrand /></div>
+        <div path="/print"></div>
+        <div path="/research"></div>
+    </Switcher>
+  );
+}
 
 const NavTrigger = () => 
   <a onClick={() => (console.log("test"))} className="nav-trigger">
@@ -78,42 +101,119 @@ const NavTrigger = () =>
     </span>
   </a>
 
-
-const Pattern = (props) =>  <div>
-  <nav className="cd-secondary-nav">
-    <ul>
-      <li><Link to='/pattern/pattern2'>Atoms</Link></li>
-      <li><Link to='/pattern/pattern3'>Molecules</Link></li>
-      <li><Link to='/pattern/pattern4'>Organisms</Link></li>
-    </ul>
-  </nav>
-    {props.children}
-  </div>
-
-  const Pattern1 = () => <h3>Test Component1! ALL</h3>
-  const Pattern2 = () => <h3>Test Component2! Atoms</h3>
-  const Pattern3 = () => <h3>Test Component2! Molecules</h3>
-  const Pattern4 = () => <h3>Test Component2! Organisms</h3>
-
-const Brand = (props) =>  <div>
-  <nav className="cd-secondary-nav">
-    <ul>
-      <li><Link to='/brand/brand2'>Logo</Link></li>
-      <li><Link to='/brand/brand3'>Color</Link></li>
-      <li><Link to='/brand/brand4'>Fonts</Link></li>
-    </ul>
-  </nav>
-    {props.children}
-  </div>
-
-  const Brand1 = () => <h3>Test Component1! ALL</h3>
-  const Brand2 = () => <h3>Test Component2! Logo</h3>
-  const Brand3 = () => <h3>Test Component2! Color</h3>
-  const Brand4 = () => <h3>Test Component2! Fonts</h3>
+class DesignContent extends Component {
+  render() {
+    return (
+      <div>
+        <p>Design Content. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+      </div>
+    );
+  }
+}
 
 
-const NotFound = () => <h1>404.. This page is not found!</h1>
+class SubNavPattern extends Component {
+  render() {
+    return (
+        <nav className="cd-secondary-nav">
+          <ul>
+            <li><a href="#/pattern/atoms">Atoms</a></li>
+            <li><a href="#/pattern/molecules">Molecules</a></li>
+            <li><a href="#/pattern/organisms">Organisms</a></li>
+          </ul>
+        </nav>
+    );
+  }
+}
 
-// Named Components
+class PatternContent extends Component {
+  render() {
+    return (
+      <div>
+        <p>Research Content. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <p>Research Content. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <p>Research Content. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <p>Research Content. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <p>Research Content. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <p>Research Content. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <p>Research Content. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <p>Research Content. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <p>Research Content. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <p>Research Content. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <p>Research Content. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <p>Research Content. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <p>Research Content. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <p>Research Content. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <p>Research Content. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <p>Research Content. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+      </div>
+    );
+  }
+}
+
+class SubNavBrand extends Component {
+  render() {
+    return (
+        <nav className="cd-secondary-nav">
+          <ul>
+            <li><a href="#/brand/atoms">Atoms</a></li>
+            <li><a href="#/brand/molecules">Molecules</a></li>
+            <li><a href="#/brand/organisms">Organisms</a></li>
+          </ul>
+        </nav>
+    );
+  }
+}
+
+class BrandContent extends Component {
+  render() {
+    return (
+      <div>
+        <p>Brand Content. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+      </div>
+    );
+  }
+}
+
+class PrintContent extends Component {
+  render() {
+    return (
+      <div>
+        <p>Print Content. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+      </div>
+    );
+  }
+}
+
+class ResearchContent extends Component {
+  render() {
+    return (
+      <div>
+        <p>Research Content. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+      </div>
+    );
+  }
+}
+
+
+
+function MainContent() {
+  return (
+    <Switcher>
+      <div path="/"><h1>Home</h1></div>
+      <div path="/design"><DesignContent /></div>
+      <div path="/pattern"><PatternContent /></div>
+        <div path="/pattern/atoms"><PatternContent /></div>
+        <div path="/pattern/molecules"><PatternContent /></div>
+        <div path="/pattern/organisms"><PatternContent /></div>
+      <div path="/brand"><BrandContent /></div>
+        <div path="/brand/atoms"><BrandContent /></div>
+        <div path="/brand/molecules"><BrandContent /></div>
+        <div path="/brand/organisms"><BrandContent /></div>
+      <div path="/print"><PrintContent /></div>
+      <div path="/research"><ResearchContent /></div>
+    </Switcher>
+  );
+}
 
 export default App
