@@ -6,7 +6,7 @@ import Headroom from 'react-headroom'
 import Switcher from 'switcheroo'
 
 
-class About extends Component {
+export class DesignContent extends Component {
   render() {
     return (
       <div>
@@ -16,4 +16,4 @@ class About extends Component {
   }
 }
 
-export default About
+

@@ -56,7 +56,7 @@ const production = {
         ]
       },
       {
-        test: /\.png$/,
+        test: /\.(png|svg)$/,
         loader: 'url-loader?limit=1'
       }
     ]

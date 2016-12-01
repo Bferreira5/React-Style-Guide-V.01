@@ -1,3 +1,97 @@
 // -----------------------------------------------------------------------------
 // This file contains styles that are specific to the home page.
 // -----------------------------------------------------------------------------
+
+// -----------------------------------------------------------------------------
+// Main Content and its container
+// -----------------------------------------------------------------------------
+
+// Container Styles
+.guide-main-content {
+	padding: 110px 0 2rem;
+	overflow: hidden;
+}
+.guide-main-content.sub-nav-hero.secondary-nav-fixed {
+	margin-top: 50px;
+}
+@media only screen and (min-width: 1024px) {
+	.guide-main-content {
+		padding-top: 80px;
+	}
+}
+
+/*
+	adjust the positioning of in-page links
+	http://nicolasgallagher.com/jump-links-and-viewport-positioning/
+*/
+.guide-main-content.sub-nav :target::before,
+.guide-main-content.sub-nav-hero :target::before {
+	display: block;
+	content: "";
+	margin-top: -50px;
+	height: 50px;
+	visibility: hidden;
+}
+@media only screen and (min-width: 1024px) {
+	.guide-main-content.sub-nav :target::before,
+	.guide-main-content.sub-nav-hero :target::before {
+		margin-top: -70px;
+		height: 70px;
+	}
+}
+
+/* -------------------------------- 
+
+Intro Section
+
+-------------------------------- */
+.guide-block {
+	/* vertically align its content */
+	display: table;
+	min-height: 300px;
+	max-height: 750px;
+	height: 100%;
+	width: 100%;
+	&:nth-of-type(odd) {
+		.guide-block-content-inner {
+			float: right;
+
+			h2 {
+				text-align: left;
+			}
+		}  
+	}
+	&:nth-of-type(even) {
+		.guide-block-content-inner {
+			h2 {
+				text-align: right;
+			}
+		}  
+	}
+}
+.guide-block-content {
+	/* vertically align inside parent element */
+	display: table-cell;
+	vertical-align: middle;
+
+	.guide-block-content-inner {
+		background-color: grey;
+		min-width: 320px;
+		width: 70%;
+		padding: 3rem;
+
+		h2 {
+			font-size: 48px;
+		}
+	}  
+}
+@media only screen and (min-width: 768px) {
+	.guide-block {
+		min-height: 300px;
+	}
+}
+@media only screen and (min-width: 1024px) {
+	.guide-block {
+		min-height: 300px;
+	}
+}
