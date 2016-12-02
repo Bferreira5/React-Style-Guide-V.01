@@ -52,9 +52,46 @@ Intro Section
 	max-height: 750px;
 	height: 100%;
 	width: 100%;
+	// background-image: url('../assets/one.png');
+	// background-image: url('http://placehold.it/1400x750');
+	background-size: cover;
+	
+	&:nth-of-type(-n+4) {
+		h2 {
+			color: #FFF;
+		}
+	}
+
+	&:nth-of-type(n+5) {
+		h2 {
+ 			color: #435363;
+		}
+	}
+
+
+	&:nth-of-type(1) {
+		background-color: #5F6D7C;
+	}
+	&:nth-of-type(2) {
+		background-color: #707880;
+	}
+	&:nth-of-type(3) {
+		background-color: #8B9299;
+	}
+	&:nth-of-type(4) {
+		background-color: #B9BEC2;
+	}
+	&:nth-of-type(5) {
+		background-color: #D3D9DD;
+	}
+	&:nth-of-type(6) {
+		background-color: #E8F0F4;
+}
+
 	&:nth-of-type(odd) {
+
 		.guide-block-content-inner {
-			float: right;
+			
 
 			h2 {
 				text-align: left;
@@ -63,8 +100,9 @@ Intro Section
 	}
 	&:nth-of-type(even) {
 		.guide-block-content-inner {
+			float: right;
 			h2 {
-				text-align: right;
+				text-align: left;
 			}
 		}  
 	}
@@ -75,9 +113,9 @@ Intro Section
 	vertical-align: middle;
 
 	.guide-block-content-inner {
-		background-color: grey;
+		
 		min-width: 320px;
-		width: 70%;
+		width: 60%;
 		padding: 3rem;
 
 		h2 {
