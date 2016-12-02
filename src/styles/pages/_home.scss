@@ -9,14 +9,19 @@
 // Container Styles
 .guide-main-content {
 	padding: 110px 0 2rem;
-	overflow: hidden;
+		p {
+	  max-width: 1024px;
+	  line-height: 1.6;
+	  margin: 2em auto;
+	  color: #a5a8a9;
+	}
 }
 .guide-main-content.sub-nav-hero.secondary-nav-fixed {
 	margin-top: 50px;
 }
 @media only screen and (min-width: 1024px) {
 	.guide-main-content {
-		padding-top: 80px;
+		padding: 150px 0 2rem;
 	}
 }
 
@@ -55,36 +60,41 @@ Intro Section
 	// background-image: url('../assets/one.png');
 	// background-image: url('http://placehold.it/1400x750');
 	background-size: cover;
-	
-	&:nth-of-type(-n+4) {
+	.first-message {
+		background-image: url('http://placehold.it/1400x950');
+	}
+
+	&:nth-of-type(-n+5) {
 		h2 {
 			color: #FFF;
 		}
 	}
 
-	&:nth-of-type(n+5) {
+	&:nth-of-type(n+6) {
 		h2 {
  			color: #435363;
 		}
 	}
 
-
 	&:nth-of-type(1) {
-		background-color: #5F6D7C;
+		background-color: #FFF;
 	}
 	&:nth-of-type(2) {
-		background-color: #707880;
+		background-color: #5F6D7C;
 	}
 	&:nth-of-type(3) {
-		background-color: #8B9299;
+		background-color: #707880;
 	}
 	&:nth-of-type(4) {
-		background-color: #B9BEC2;
+		background-color: #8B9299;
 	}
 	&:nth-of-type(5) {
-		background-color: #D3D9DD;
+		background-color: #B9BEC2;
 	}
 	&:nth-of-type(6) {
+		background-color: #D3D9DD;
+	}
+	&:nth-of-type(7) {
 		background-color: #E8F0F4;
 }
 

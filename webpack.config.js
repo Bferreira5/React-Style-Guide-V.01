@@ -47,6 +47,7 @@ const production = {
         test: /\.scss$/,
         loaders: [
           'style-loader',
+          'css-loader?sourceMap&importLoaders=1',
           'postcss-loader',
           'sass?sourceMap'
         ],
@@ -55,19 +56,8 @@ const production = {
         ]
       },
       {
-        test: /\.(jpg|png)$/,
-        loader: 'url?limit=25000',
-         path.resolve(__dirname, 'src/assets')
-      },
-      {
-        test: /\.(jpg|png)$/,
-        loader: 'file?name=[path][name].[hash].[ext]',
-        include: PATHS.images
-      },
-      {
-        test: /\.svg$/,
-        loader: 'file',
-        include: PATHS.images
+        test: /\.(png|svg)$/,
+        loader: 'url-loader?limit=1'
       }
     ]
   },
