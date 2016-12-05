@@ -56,8 +56,8 @@ const production = {
         ]
       },
       {
-        test: /\.(png|svg)$/,
-        loader: 'url-loader?limit=1'
+        test: /\.png|jpg|gif|svg$/,
+        loader: 'url-loader?limit=100000&name=./assets/[hash].[ext]'
       }
     ]
   },
