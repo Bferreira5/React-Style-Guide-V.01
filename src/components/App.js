@@ -5,6 +5,7 @@ import DevTools from 'mobx-react-devtools'
 import Headroom from 'react-headroom'
 import Switcher from 'switcheroo'
 
+
 import { LandingContent } from './pages/LandingPage'
 import { DesignContent } from './pages/Design'
 import { PatternContent, PatternSubNav } from './pages/Pattern'
@@ -87,7 +88,7 @@ function SubNav() {
       <div path="/design"></div>
       <div path="/pattern"><PatternSubNav /></div>
         <div path="/pattern/atoms"><PatternSubNav /></div>
-          <div path="/pattern/atoms/component-1"><PatternSubNav /></div>
+          <div path="/pattern/atoms/button"><PatternSubNav /></div>
         <div path="/pattern/molecules"><PatternSubNav /></div>
         <div path="/pattern/organisms"><PatternSubNav /></div>
       <div path="/brand"><BrandSubNav /></div>
@@ -115,7 +116,7 @@ function MainContent() {
       <div path="/design"><DesignContent /></div>
       <div path="/pattern"><PatternContent /></div>
         <div path="/pattern/atoms"><PatternContent /></div>
-          <div path="/pattern/atoms/component-1"><PatternContent /></div>
+          <div path="/pattern/atoms/button"><PatternContent /></div>
         <div path="/pattern/molecules"><PatternContent /></div>
         <div path="/pattern/organisms"><PatternContent /></div>
       <div path="/brand"><BrandContent /></div>
