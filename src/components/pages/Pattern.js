@@ -5,9 +5,15 @@ import DevTools from 'mobx-react-devtools'
 import Headroom from 'react-headroom'
 import Switcher from 'switcheroo'
 
+import { PrismCode } from "react-prism";
+
+
+
 import testImage from '../../assets/one.png'
 
-import { ButtonComponent } from '../button/Button'
+import { ButtonComponent, ButtonDescription, ButtonCode } from '../button/Button'
+
+
 
 export class PatternSubNav extends Component {
   render() {
