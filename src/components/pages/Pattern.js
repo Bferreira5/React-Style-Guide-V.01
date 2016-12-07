@@ -24,29 +24,36 @@ export class PatternSubNav extends Component {
   }
 }
 
-export class PatternAside extends Component {
-  render() {
-    return (
-        <aside className="guide-asside-nav">
-          <ul>
-            <li><a href="#/pattern/atoms/button">Buttons</a></li>
-          </ul>
-        </aside>
-    );
-  }
-}
-
 export class PatternContent extends Component {
   render() {
     return (
       <section className="guide-main-content">
+      <div className="guide-body">
         <PatternAside />
-        <PatternComponents />
+        <main className="guide-content">
+          <PatternComponents />
+        </main>
+      </div>
       </section>
     );
   }
 }
 
+export class PatternAside extends Component {
+  render() {
+    return (
+        <aside className="guide-aside">
+          <dropdown>
+            <input id="toggle2" type="checkbox" />
+            <label htmlFor="toggle2" >Components</label>
+            <ul>
+              <li><a href="#/pattern/atoms/button">Buttons</a></li>
+            </ul>
+          </dropdown>
+        </aside>
+    );
+  }
+}
 
 export class PatternAll extends Component {
   render() {
@@ -54,12 +61,10 @@ export class PatternAll extends Component {
       <div className="">
         <h1>All Patterns including atoms and molecules + organisms</h1>
         <h2>Atoms</h2>
-          <ol>
-            <li><ButtonRaisedComponent /></li>
-          </ol>
+        <ButtonRaisedComponent />
         <h2>Molecules</h2>
           <ol>
-            <li><ButtonRaisedComponent /></li>
+            <li>Stuff</li>
           </ol>
       </div>
     );
@@ -78,6 +83,8 @@ export class PatternAtoms extends Component {
     );
   }
 }
+
+// Switcher routing for pattern
 
 function PatternComponents() {
   return (

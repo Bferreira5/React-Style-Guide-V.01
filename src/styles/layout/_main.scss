@@ -1,0 +1,264 @@
+// -----------------------------------------------------------------------------
+// This file contains styles that are specific to the home page.
+// -----------------------------------------------------------------------------
+
+// -----------------------------------------------------------------------------
+// Main Content and its container
+// -----------------------------------------------------------------------------
+
+// Container Styles
+.guide-container {
+	padding: 110px 0 2rem;
+	p {
+		max-width: 1024px;
+		line-height: 1.6;
+		margin: 2em auto;
+		color: #a5a8a9;
+	}
+}
+
+.guide-main-content {
+	display: flex;
+	min-height: 100vh;
+	padding: 110px 0 0;
+	flex-direction: column;
+}
+
+.guide-body {
+	flex: 1;
+}
+
+.guide-main-content, .guide-body {
+	display: flex;
+  flex-direction: column;
+}
+
+
+.guide-content {
+	flex: 1;
+	padding: 0 2.5rem;
+}
+
+.guide-aside {
+	flex: 0 0 3rem;
+	padding: 1.5rem;
+	background-color: $light-grey;
+}
+
+@media only screen and (min-width: 1024px) {
+
+.guide-main-content {
+	padding: 150px 0 0;
+}
+
+	.guide-body {
+    flex-direction: row;
+    flex: 1;
+	}
+	.guide-content {
+		flex: 1;
+	}
+	.guide-aside {
+		flex: 0 0 15rem;
+	}
+}
+
+
+dropdown {
+	display: inline-block;
+	height: 50px;
+	margin: 1rem;
+		ul {
+			padding: 0;
+			margin: 0;
+		}
+
+	label, ul, li {
+		-webkit-transition: all .3s;
+		-moz-transition: all .3s;
+		-ms-transition: all .3s;
+		-ms-transition: all .3s;
+		transition: all .3s;  
+		backface-visibility:hidden;
+		-webkit-backface-visibility:hidden; /* Chrome and Safari */
+		-moz-backface-visibility:hidden; /* Firefox */
+		-ms-backface-visibility:hidden; /* Internet Explorer */
+	 }
+}
+dropdown label{
+	display: block;
+	width: 200px;
+	background: #ECF0F1;
+	text-indent: 10px;
+	line-height: 50px;
+
+}
+dropdown ul li {
+	display: block;
+	width: 200px;
+	background: #ECF0F1;
+}
+dropdown ul li a {
+	display:block;
+	padding:0;
+	text-indent: 10px;	
+	line-height: 50px;
+	text-decoration:none;
+}
+
+dropdown label:hover, dropdown ul li:hover {
+	background: $brand-color;
+	color: white;
+	cursor: pointer;
+}
+dropdown label {
+	color: $brand-color;
+	border-left: 4px solid $brand-color;
+	border-radius: 0; 
+	position: relative;
+	z-index: 2;
+}
+dropdown input {
+	display: none;
+}
+dropdown input ~ ul {
+  position: relative;
+  visibility: hidden;
+  opacity: 0;
+  top: -50px;
+	z-index: 1;
+}
+dropdown input:checked + label {
+	background: $brand-color;
+	color: white;
+}
+
+dropdown input:checked ~ ul {
+	visibility: visible;
+	opacity: 1;
+	top: 0;
+}
+
+.guide-main-content.sub-nav-hero.secondary-nav-fixed {
+	margin-top: 50px;
+
+}
+
+/*
+	adjust the positioning of in-page links
+	http://nicolasgallagher.com/jump-links-and-viewport-positioning/
+*/
+.guide-main-content.sub-nav :target::before,
+.guide-main-content.sub-nav-hero :target::before {
+	display: block;
+	content: "";
+	margin-top: -50px;
+	height: 50px;
+	visibility: hidden;
+}
+@media only screen and (min-width: 1024px) {
+	.guide-main-content.sub-nav :target::before,
+	.guide-main-content.sub-nav-hero :target::before {
+		margin-top: -70px;
+		height: 70px;
+	}
+}
+
+/* -------------------------------- 
+
+Intro Section
+
+-------------------------------- */
+.guide-block {
+	/* vertically align its content */
+	display: table;
+	min-height: 300px;
+	max-height: 750px;
+	height: 100%;
+	width: 100%;
+	// background-image: url('../assets/one.png');
+	// background-image: url('http://placehold.it/1400x750');
+	background-size: cover;
+	.first-message {
+		background-image: url('../assets/one.png');
+	}
+
+	&:nth-of-type(-n+5) {
+		h2 {
+			color: #FFF;
+		}
+	}
+
+	&:nth-of-type(n+6) {
+		h2 {
+			color: #435363;
+		}
+	}
+
+	&:nth-of-type(1) {
+		background-color: #FFF;
+	}
+	&:nth-of-type(2) {
+		background-color: #5F6D7C;
+	}
+	&:nth-of-type(3) {
+		background-color: #707880;
+	}
+	&:nth-of-type(4) {
+		background-color: #8B9299;
+	}
+	&:nth-of-type(5) {
+		background-color: #B9BEC2;
+	}
+	&:nth-of-type(6) {
+		background-color: #D3D9DD;
+	}
+	&:nth-of-type(7) {
+		background-color: #E8F0F4;
+}
+
+	&:nth-of-type(odd) {
+
+		.guide-block-content-inner {
+			
+
+			h2 {
+				text-align: left;
+			}
+		}  
+	}
+	&:nth-of-type(even) {
+		.guide-block-content-inner {
+			float: right;
+			h2 {
+				text-align: left;
+			}
+		}  
+	}
+}
+.guide-block-content {
+	/* vertically align inside parent element */
+	display: table-cell;
+	vertical-align: middle;
+
+	.guide-block-content-inner {
+		
+		min-width: 320px;
+		width: 60%;
+		padding: 3rem;
+
+		h2 {
+			font-size: 48px;
+		}
+	}  
+}
+@media only screen and (min-width: 768px) {
+	.guide-block {
+		min-height: 300px;
+	}
+}
+@media only screen and (min-width: 1024px) {
+	.guide-block {
+		min-height: 300px;
+	}
+}

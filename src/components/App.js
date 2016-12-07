@@ -27,6 +27,7 @@ class App extends Component {
 }
 
 class TopBar extends Component {
+
     constructor(props){
       super(props);
       this.state={isHide:false};
@@ -51,33 +52,27 @@ class TopBar extends Component {
 
         let classHide=this.state.isHide?"is-hidden":""
         return (
-          <header className={"guide-auto-hide-header "+classHide}>
-            <MainNav />
+          <header className={"guide-auto-hide-header " + classHide }>
+            <div className="logo"><a href="#/"><img src="" alt="Logo" /></a></div>
+            <nav className="guide-primary-nav">
+                <a onClick={this.handleClick} className="nav-trigger">
+                    <span>
+                        <em aria-hidden="true" />
+                        Menu
+                    </span>
+                </a>
+                <ul id="guide-navigation">
+                    <li><a href="#/design">Design Principles</a></li>
+                    <li><a href="#/pattern">Pattern Library</a></li>
+                    <li><a href="#/brand">Brand</a></li>
+                    <li><a href="#/print">Print</a></li>
+                    <li><a href="#/research">Research</a></li>
+                </ul>
+            </nav>
             <SubNav />
           </header>
         );
     }
-}
-
-
-class MainNav extends Component {
-  render() {
-    return (
-      <div>
-        <div className="logo"><a href="#/"><img src="" alt="Logo" /></a></div>
-        <nav className="guide-primary-nav">
-          <NavTrigger />
-          <ul id="guide-navigation">
-          <li><a href="#/design">Design Principles</a></li>
-          <li><a href="#/pattern">Pattern Library</a></li>
-          <li><a href="#/brand">Brand</a></li>
-          <li><a href="#/print">Print</a></li>
-          <li><a href="#/research">Research</a></li>
-          </ul>
-        </nav>
-      </div>
-    );
-  }
 }
 
 function SubNav() {
@@ -99,14 +94,6 @@ function SubNav() {
     </Switcher>
   );
 }
-
-const NavTrigger = () => 
-  <a onClick={() => (console.log("test"))} className="nav-trigger">
-    <span>
-      <em aria-hidden="true" />
-      Menu
-    </span>
-  </a>
 
 function MainContent() {
   return (
