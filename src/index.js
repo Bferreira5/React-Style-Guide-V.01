@@ -2,7 +2,8 @@ import _ from 'lodash'
 import React from 'react'
 import ReactDOM from 'react-dom'
 import Headroom from 'react-headroom'
-import { Router, Route, Link, IndexRoute, hashHistory, browserHistory, DefaultRoute, IndexLink } from 'react-router'
+import { PrismCode } from "react-prism";
+import ReactDOMServer from 'react-dom/server'
 
 import App from './components/App'
 

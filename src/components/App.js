@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
-import { Router, Route, Link, IndexRoute, hashHistory, browserHistory, DefaultRoute, IndexLink } from 'react-router'
 import { Provider, observer } from 'mobx-react'
 import DevTools from 'mobx-react-devtools'
 import Headroom from 'react-headroom'
 import Switcher from 'switcheroo'
-
+import { PrismCode } from "react-prism";
 
 import { LandingContent } from './pages/LandingPage'
 import { DesignContent } from './pages/Design'

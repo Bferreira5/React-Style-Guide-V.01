@@ -5,15 +5,10 @@ import DevTools from 'mobx-react-devtools'
 import Headroom from 'react-headroom'
 import Switcher from 'switcheroo'
 
-import { PrismCode } from "react-prism";
-
-
 
 import testImage from '../../assets/one.png'
 
-import { ButtonComponent, ButtonDescription, ButtonCode } from '../button/Button'
-
-
+import { ButtonRaisedComponent } from '../button/Button'
 
 export class PatternSubNav extends Component {
   render() {
@@ -32,7 +27,7 @@ export class PatternSubNav extends Component {
 export class PatternAside extends Component {
   render() {
     return (
-        <aside className="">
+        <aside className="guide-asside-nav">
           <ul>
             <li><a href="#/pattern/atoms/button">Buttons</a></li>
           </ul>
@@ -60,17 +55,11 @@ export class PatternAll extends Component {
         <h1>All Patterns including atoms and molecules + organisms</h1>
         <h2>Atoms</h2>
           <ol>
-            <li><ButtonComponent /></li>
-            <li><ButtonComponent /></li>
-            <li><ButtonComponent /></li>
-            <li><ButtonComponent /></li>
+            <li><ButtonRaisedComponent /></li>
           </ol>
         <h2>Molecules</h2>
           <ol>
-            <li><ButtonComponent /></li>
-            <li><ButtonComponent /></li>
-            <li><ButtonComponent /></li>
-            <li><ButtonComponent /></li>
+            <li><ButtonRaisedComponent /></li>
           </ol>
       </div>
     );
@@ -83,27 +72,19 @@ export class PatternAtoms extends Component {
       <div className="">
         <h1>All Patterns it's Atoms</h1>
           <ol>
-            <li><ButtonComponent /></li>
-            <li><ButtonComponent /></li>
-            <li><ButtonComponent /></li>
-            <li><ButtonComponent /></li>
-            <li><ButtonComponent /></li>
-            <li><ButtonComponent /></li>
-            <li><ButtonComponent /></li>
-            <li><ButtonComponent /></li>
+            <li><ButtonRaisedComponent /></li>
           </ol>
       </div>
     );
   }
 }
 
-
 function PatternComponents() {
   return (
     <Switcher>
       <div path="/pattern"><PatternAll/></div>
       <div path="/pattern/atoms"><PatternAtoms/></div>
-      <div path="/pattern/atoms/button"> <ButtonComponent /></div>
+      <div path="/pattern/atoms/button"> <ButtonRaisedComponent /></div>
     </Switcher>
   );
 }
