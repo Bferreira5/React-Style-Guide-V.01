@@ -1,7 +1,5 @@
 /* -------------------------------- 
-
 1. Auto-Hiding Navigation - Simple
-
 -------------------------------- */
 .guide-auto-hide-header {
   position: fixed;
@@ -137,14 +135,21 @@
   padding-right: 5%;
 }
 .guide-primary-nav > ul {
+  margin: 0;
+  padding: 0;
   position: absolute;
-  z-index: 3;
+  z-index: 5;
   top: 60px;
   left: 0;
   width: 100%;
   background-color: #ffffff;
   display: none;
   box-shadow: 0 14px 20px rgba(0, 0, 0, 0.2);
+
+  li {
+    margin: 0;
+    list-style: none;
+  }
 }
 .guide-primary-nav > ul a {
   /* target primary-nav links */

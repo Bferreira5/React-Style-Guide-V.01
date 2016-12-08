@@ -25,9 +25,31 @@ export class PatternSubNav extends Component {
 }
 
 export class PatternContent extends Component {
+
+  constructor(props){
+    super(props);
+    this.state={isNudge:false};
+    this.scrollNudge = this.scrollNudge.bind(this)
+  }
+  scrollNudge(){
+     let {isNudge} = this.state
+     window.scrollY > this.prev?
+     !isNudge && this.setState({isNudge:true})
+     :
+     isNudge && this.setState({isNudge:false})
+
+     this.prev = window.scrollY;
+  }
+  componentDidMount(){
+      window.addEventListener('scroll',this.scrollNudge);
+  }
+  componentWillUnmount(){
+       window.removeEventListener('scroll',this.scrollNudge);
+  }
   render() {
+    let classNudge=this.state.isNudge?"is-hidden-nudge":""
     return (
-      <section className="guide-main-content">
+      <section className={"guide-main-content " + classNudge}>
       <div className="guide-body">
         <PatternAside />
         <main className="guide-content">
@@ -43,13 +65,25 @@ export class PatternAside extends Component {
   render() {
     return (
         <aside className="guide-aside">
-          <dropdown>
+          <dropdown className="dropdown">
             <input id="toggle2" type="checkbox" />
             <label htmlFor="toggle2" >Components</label>
             <ul>
               <li><a href="#/pattern/atoms/button">Buttons</a></li>
+              <li><a href="#/pattern/atoms/button">Buttons</a></li>
+              <li><a href="#/pattern/atoms/button">Buttons</a></li>
+              <li><a href="#/pattern/atoms/button">Buttons</a></li>
             </ul>
           </dropdown>
+          <div className="side-nav-desktop">
+            <label>Components</label>
+            <ul>
+              <li><a href="#/pattern/atoms/button">Buttons</a></li>
+              <li><a href="#/pattern/atoms/button">Buttons</a></li>
+              <li><a href="#/pattern/atoms/button">Buttons</a></li>
+              <li><a href="#/pattern/atoms/button">Buttons</a></li>
+            </ul>
+          </div>
         </aside>
     );
   }

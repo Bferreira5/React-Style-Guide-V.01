@@ -3,7 +3,8 @@ import { Provider, observer } from 'mobx-react'
 import DevTools from 'mobx-react-devtools'
 import Headroom from 'react-headroom'
 import Switcher from 'switcheroo'
-import { PrismCode } from "react-prism";
+import classnames from 'classnames'
+import { PrismCode } from "react-prism"
 
 import { LandingContent } from './pages/LandingPage'
 import { DesignContent } from './pages/Design'
@@ -26,13 +27,24 @@ class App extends Component {
   }
 }
 
+
 class TopBar extends Component {
 
     constructor(props){
       super(props);
       this.state={isHide:false};
-      this.hideBar = this.hideBar.bind(this)
+      this.hideBar = this.hideBar.bind(this);
+
+      this.state = {isOpen: true};
     }
+
+    click(e) {
+        e.preventDefault();
+        this.setState({isOpen: !this.state.isOpen}, function() {
+            this.props.onClick(this.state.isOpen);
+        });
+    }
+
     hideBar(){
        let {isHide} = this.state
        window.scrollY > this.prev?
@@ -42,6 +54,7 @@ class TopBar extends Component {
 
        this.prev = window.scrollY;
     }
+
     componentDidMount(){
         window.addEventListener('scroll',this.hideBar);
     }
@@ -50,12 +63,15 @@ class TopBar extends Component {
     }
     render(){
 
-        let classHide=this.state.isHide?"is-hidden":""
+        let classHide=this.state.isHide?"is-hidden ":""
+        // class needed to toggle
+        let classToggle = classnames(this.state.isOpen ? '' : 'nav-open');
+        
         return (
-          <header className={"guide-auto-hide-header " + classHide }>
+          <header className={"guide-auto-hide-header " + classHide + classToggle }>
             <div className="logo"><a href="#/"><img src="" alt="Logo" /></a></div>
             <nav className="guide-primary-nav">
-                <a onClick={this.handleClick} className="nav-trigger">
+                <a onClick={this.click.bind(this)} className="nav-trigger">
                     <span>
                         <em aria-hidden="true" />
                         Menu

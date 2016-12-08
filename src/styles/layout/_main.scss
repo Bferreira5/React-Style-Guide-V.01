@@ -30,7 +30,7 @@
 
 .guide-main-content, .guide-body {
 	display: flex;
-  flex-direction: column;
+	flex-direction: column;
 }
 
 
@@ -49,7 +49,12 @@
 
 .guide-main-content {
 	padding: 150px 0 0;
+	transition: padding .45s ease-in-out;
 }
+.guide-main-content.is-hidden-nudge {
+		padding: 70px 0 0;
+		transition: all .45s ease-in-out;
+	}
 
 	.guide-body {
     flex-direction: row;
@@ -64,7 +69,7 @@
 }
 
 
-dropdown {
+.dropdown {
 	display: inline-block;
 	height: 50px;
 	margin: 1rem;
@@ -85,63 +90,87 @@ dropdown {
 		-ms-backface-visibility:hidden; /* Internet Explorer */
 	 }
 }
-dropdown label{
+.dropdown label {
 	display: block;
 	width: 200px;
 	background: #ECF0F1;
 	text-indent: 10px;
 	line-height: 50px;
-
 }
-dropdown ul li {
+.dropdown ul li {
 	display: block;
 	width: 200px;
 	background: #ECF0F1;
 }
-dropdown ul li a {
+.dropdown ul li a {
 	display:block;
 	padding:0;
 	text-indent: 10px;	
 	line-height: 50px;
 	text-decoration:none;
 }
-
-dropdown label:hover, dropdown ul li:hover {
+.dropdown label:hover, dropdown ul li:hover, dropdown ul li a:hover {
 	background: $brand-color;
 	color: white;
 	cursor: pointer;
 }
-dropdown label {
+.dropdown label {
 	color: $brand-color;
 	border-left: 4px solid $brand-color;
 	border-radius: 0; 
 	position: relative;
 	z-index: 2;
 }
-dropdown input {
+.dropdown input {
 	display: none;
 }
-dropdown input ~ ul {
+.dropdown input ~ ul {
   position: relative;
-  visibility: hidden;
+  visibility: visible;
   opacity: 0;
   top: -50px;
 	z-index: 1;
 }
-dropdown input:checked + label {
+.dropdown input:checked + label {
 	background: $brand-color;
 	color: white;
 }
-
-dropdown input:checked ~ ul {
+.dropdown input:checked ~ ul {
 	visibility: visible;
 	opacity: 1;
 	top: 0;
 }
 
+.side-nav-desktop {
+	display: none;
+}
+
+@media only screen and (min-width: 1024px) {
+	.dropdown {
+		display: none;
+	}
+	.side-nav-desktop {
+		display: block;
+		ul {
+			padding: 0;
+			margin: 0;
+		}
+
+		li {
+			text-decoration: none;
+			list-style: none;
+			a {
+				line-height: 30px;
+				text-decoration: none;
+				border-left: 2px solid transparent;
+			}
+		}
+	}
+}
+
+
 .guide-main-content.sub-nav-hero.secondary-nav-fixed {
 	margin-top: 50px;
-
 }
 
 /*
@@ -180,7 +209,19 @@ Intro Section
 	// background-image: url('http://placehold.it/1400x750');
 	background-size: cover;
 	.first-message {
-		background-image: url('../assets/one.png');
+		background-color: tomato;
+	}
+	.brand-color {
+		background-color: #962D3E;
+	}
+	.design-color {
+		background-color: #E74C3C;
+	}
+	.research-color {
+		background-color: #ECF0F1;
+	}
+	.print-color {
+		background-color: #3498DB;
 	}
 
 	&:nth-of-type(-n+5) {
@@ -188,13 +229,11 @@ Intro Section
 			color: #FFF;
 		}
 	}
-
 	&:nth-of-type(n+6) {
 		h2 {
 			color: #435363;
 		}
 	}
-
 	&:nth-of-type(1) {
 		background-color: #FFF;
 	}
@@ -215,13 +254,10 @@ Intro Section
 	}
 	&:nth-of-type(7) {
 		background-color: #E8F0F4;
-}
-
+	}
 	&:nth-of-type(odd) {
 
 		.guide-block-content-inner {
-			
-
 			h2 {
 				text-align: left;
 			}
@@ -240,6 +276,10 @@ Intro Section
 	/* vertically align inside parent element */
 	display: table-cell;
 	vertical-align: middle;
+
+		h1 {
+			text-align: center;
+		}
 
 	.guide-block-content-inner {
 		

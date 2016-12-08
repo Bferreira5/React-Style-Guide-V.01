@@ -12,6 +12,7 @@ export class LandingContent extends Component {
       <div>
 		<div className="guide-block">
 			<div className="guide-block-content first-message">
+			    <h1>Home Content</h1>
 			</div>
 		</div>
 		<div className="guide-block">

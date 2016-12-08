@@ -9,8 +9,60 @@ import Switcher from 'switcheroo'
 export class DesignContent extends Component {
   render() {
     return (
-      <div className="guide-main-content">
-        <p>Design Content. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+      <div>
+		<div className="guide-block">
+			<div className="guide-block-content design-color">
+				<h1>Design Content</h1>
+			</div>
+		</div>
+		<div className="guide-block">
+			<div className="guide-block-content">
+				<div className="guide-block-content-inner">
+					<h2>Take the work off my plate.</h2>
+					<h2>Don’t add to my burden.</h2>
+				</div>
+			</div>
+		</div>
+		<div className="guide-block">
+			<div className="guide-block-content">
+				<div className="guide-block-content-inner">
+					<h2>Filter out the noise</h2>
+					<h2>Don’t confuse or complicate.</h2>
+				</div>
+			</div>
+		</div>
+		<div className="guide-block">
+			<div className="guide-block-content">
+				<div className="guide-block-content-inner">
+					<h2>Lead with the “why”.</h2>
+					<h2>Don’t get lost in the “how” or “what”.</h2>
+				</div>
+			</div>
+		</div>
+		<div className="guide-block">
+			<div className="guide-block-content">
+				<div className="guide-block-content-inner">
+					<h2>Be the sidekick, <br/>not the hero.</h2>
+					<h2>Don’t confuse or complicate.</h2>
+				</div>
+			</div>
+		</div>
+		<div className="guide-block">
+			<div className="guide-block-content">
+				<div className="guide-block-content-inner">
+					<h2>Use the familiar</h2>
+					<h2>Don’t break all norms at once.</h2>
+				</div>
+			</div>
+		</div>
+		<div className="guide-block">
+			<div className="guide-block-content">
+				<div className="guide-block-content-inner">
+					<h2>Empower with tangible next steps</h2>
+					<h2>Don’t work in a vacuum.</h2>
+				</div>
+			</div>
+		</div>
       </div>
     );
   }
