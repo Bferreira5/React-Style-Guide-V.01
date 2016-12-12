@@ -61,46 +61,48 @@ export class PatternContent extends Component {
   }
 }
 
-export class PatternAside extends Component {
-  render() {
-    return (
-        <aside className="guide-aside">
-          <dropdown className="dropdown">
-            <input id="toggle2" type="checkbox" />
-            <label htmlFor="toggle2" >Components</label>
-            <ul>
-              <li><a href="#/pattern/atoms/button">Buttons</a></li>
-              <li><a href="#/pattern/atoms/button">Buttons</a></li>
-              <li><a href="#/pattern/atoms/button">Buttons</a></li>
-              <li><a href="#/pattern/atoms/button">Buttons</a></li>
-            </ul>
-          </dropdown>
-          <div className="side-nav-desktop">
-            <label>Components</label>
-            <ul>
-              <li><a href="#/pattern/atoms/button">Buttons</a></li>
-              <li><a href="#/pattern/atoms/button">Buttons</a></li>
-              <li><a href="#/pattern/atoms/button">Buttons</a></li>
-              <li><a href="#/pattern/atoms/button">Buttons</a></li>
-            </ul>
-          </div>
-        </aside>
-    );
-  }
-}
+
 
 export class PatternAll extends Component {
   render() {
     return (
       <div className="">
-        <h1>All Patterns including atoms and molecules + organisms</h1>
+        <h1>All Patterns including atoms, molecules and organisms</h1>
         <h2>Atoms</h2>
-        <ButtonRaisedComponent />
+          <p>All the atom modules go here</p>
         <h2>Molecules</h2>
-          <ol>
-            <li>Stuff</li>
-          </ol>
+          <p>All the Molecules modules go here</p>
+        <h2>Organisms</h2>
+          <p>All the Organisms modules go here</p>
       </div>
+    );
+  }
+}
+
+export class PatternAllAside extends Component {
+  render() {
+    return (
+      <nav>
+        <dropdown className="dropdown">
+          <input id="toggle2" type="checkbox" />
+          <label htmlFor="toggle2">Components</label>
+          <ul>
+            <li className="seperator">Atoms Components</li>
+            <li><a href="#/pattern/atoms/button">Buttons</a></li>
+          </ul>
+        </dropdown>
+        <div className="side-nav-desktop">
+          <label><a href="#/pattern/">Components</a></label>
+          <ul>
+            <li className="seperator">Atoms</li>
+            <li><a href="#/pattern/atoms/button">Buttons</a></li>
+            <li className="seperator">Molecules</li>
+            <li><a href="#/pattern/atoms/button">Buttons</a></li>
+            <li className="seperator">Organisms</li>
+            <li><a href="#/pattern/atoms/button">Buttons</a></li>
+          </ul>
+        </div>
+      </nav>
     );
   }
 }
@@ -108,24 +110,132 @@ export class PatternAll extends Component {
 export class PatternAtoms extends Component {
   render() {
     return (
-      <div className="">
-        <h1>All Patterns it's Atoms</h1>
-          <ol>
-            <li><ButtonRaisedComponent /></li>
-          </ol>
-      </div>
+      <ul>
+        <li className="guide-tile"><ButtonRaisedComponent /></li>
+        <li className="guide-tile"><ButtonRaisedComponent /></li>
+      </ul>
     );
   }
 }
 
+export class PatternAllAtoms extends Component {
+  render() {
+    return (
+      <nav>
+        <dropdown className="dropdown">
+          <input id="toggle2" type="checkbox" />
+          <label htmlFor="toggle2">Atoms Components</label>
+          <ul>
+            <li className="seperator">Atoms Components</li>
+            <li><a href="#/pattern/atoms/button">Buttons</a></li>
+          </ul>
+        </dropdown>
+        <div className="side-nav-desktop">
+          <label><a href="#/pattern/">Components</a></label>
+          <ul>
+            <li className="seperator">Atoms</li>
+            <li><a href="#/pattern/atoms/button">Buttons</a></li>
+          </ul>
+        </div>
+      </nav>
+    );
+  }
+}
+
+export class PatternMolecules extends Component {
+  render() {
+    return (
+      <ul>
+        <li className="guide-tile"><ButtonRaisedComponent /></li>
+        <li className="guide-tile"><ButtonRaisedComponent /></li>
+      </ul>
+    );
+  }
+}
+
+export class PatternAllMolecules extends Component {
+  render() {
+    return (
+      <nav>
+        <dropdown className="dropdown">
+          <input id="toggle2" type="checkbox" />
+          <label htmlFor="toggle2">Molecules Components</label>
+          <ul>
+            <li className="seperator">Molecules Components</li>
+            <li><a href="#/pattern/atoms/button">Buttons</a></li>
+          </ul>
+        </dropdown>
+        <div className="side-nav-desktop">
+          <label><a href="#/pattern/">Back Components</a></label>
+          <ul>
+            <li className="seperator">Molecules</li>
+            <li><a href="#/pattern/molecules/button">Buttons</a></li>
+          </ul>
+        </div>
+      </nav>
+    );
+  }
+}
+
+export class PatternOrganism extends Component {
+  render() {
+    return (
+      <ul>
+        <li className="guide-tile"><ButtonRaisedComponent /></li>
+        <li className="guide-tile"><ButtonRaisedComponent /></li>
+      </ul>
+    );
+  }
+}
+
+export class PatternAllOrganisms extends Component {
+  render() {
+    return (
+      <nav>
+        <dropdown className="dropdown">
+          <input id="toggle2" type="checkbox" />
+          <label htmlFor="toggle2">Pattern Components</label>
+          <ul>
+            <li className="seperator">Pattern Components</li>
+            <li><a href="#/pattern/organisms/button">Buttons</a></li>
+          </ul>
+        </dropdown>
+        <div className="side-nav-desktop">
+          <label><a href="#/pattern/">Components</a></label>
+          <ul>
+            <li className="seperator">Pattern</li>
+            <li><a href="#/pattern/organisms/button">Buttons</a></li>
+          </ul>
+        </div>
+      </nav>
+    );
+  }
+}
+
+
 // Switcher routing for pattern
+
 
 function PatternComponents() {
   return (
     <Switcher>
-      <div path="/pattern"><PatternAll/></div>
-      <div path="/pattern/atoms"><PatternAtoms/></div>
-      <div path="/pattern/atoms/button"> <ButtonRaisedComponent /></div>
+      <div className="guide-components-listing" path="/pattern"><PatternAll/></div>
+        <div className="guide-components-listing" path="/pattern/atoms"><PatternAtoms/></div>
+          <div className="guide-components-listing" path="/pattern/atoms/button"><ButtonRaisedComponent /></div>
+        <div className="guide-components-listing" path="/pattern/molecules"><PatternMolecules/></div>
+        <div className="guide-components-listing" path="/pattern/organisms"><PatternOrganism/></div>
+    </Switcher>
+  );
+}
+
+function PatternAside() {
+  return (
+    <Switcher>
+      <aside className="guide-aside" path="/pattern"><PatternAllAside/></aside>
+        <aside className="guide-aside" path="/pattern/atoms"><PatternAllAtoms/></aside>
+          <aside className="guide-aside" path="/pattern/atoms/button"><PatternAllAtoms/></aside>
+        <aside className="guide-aside" path="/pattern/molecules"><PatternAllMolecules/></aside>
+        <aside className="guide-aside" path="/pattern/organisms"><PatternAllOrganisms/></aside>
     </Switcher>
   );
 }
