@@ -37,10 +37,10 @@ build-in-docker:
     - style-guide.js
     - style-guide.js.map
 
-test-in-docker:
-  stage: test
-  script:
-    - docker run --rm  -i $BASE_TAG yarn test
+# test-in-docker:
+#   stage: test
+#   script:
+#     - docker run --rm  -i $BASE_TAG yarn test
 
 push-to-aws-dev:
     stage: push
