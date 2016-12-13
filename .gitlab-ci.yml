@@ -46,12 +46,12 @@ build-in-docker:
 push-to-aws-dev:
     stage: push
     script:
-      - AWS_ACCESS_KEY_ID=$AWS_DEV_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY=$AWS_DEV_SECRET_ACCESS_KEY aws s3 cp $PACKAGE_NAME.js s3://$AWS_S3_BUCKET_PREFIX-dev/$PACKAGE_NAME-git-$CI_BUILD_REF.js
-      - AWS_ACCESS_KEY_ID=$AWS_DEV_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY=$AWS_DEV_SECRET_ACCESS_KEY aws s3 cp $PACKAGE_NAME.js.map s3://$AWS_S3_BUCKET_PREFIX-dev/$PACKAGE_NAME-git-$CI_BUILD_REF.js.map
-    only:
-      - development
-      - master
-      - tags
+      - AWS_ACCESS_KEY_ID=$AWS_DEV_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY=$AWS_DEV_SECRET_ACCESS_KEY aws s3 cp --acl public-read $PACKAGE_NAME.js s3://$AWS_S3_BUCKET_PREFIX-dev/$PACKAGE_NAME-git-$CI_BUILD_REF.js
+      - AWS_ACCESS_KEY_ID=$AWS_DEV_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY=$AWS_DEV_SECRET_ACCESS_KEY aws s3 cp --acl public-read $PACKAGE_NAME.js.map s3://$AWS_S3_BUCKET_PREFIX-dev/$PACKAGE_NAME-git-$CI_BUILD_REF.js.map
+    # only:
+    #   - development
+    #   - master
+    #   - tags
 
 push-release-tag-to-aws-main:
   stage: push
