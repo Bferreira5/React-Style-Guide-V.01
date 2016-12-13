@@ -32,7 +32,7 @@ build-in-docker:
     - docker build --force-rm -t $BASE_TAG .
     - docker run --rm  -i $BASE_TAG cat www/$PACKAGE_NAME.js > $PACKAGE_NAME.js
     - docker run --rm  -i $BASE_TAG cat www/$PACKAGE_NAME.js.map > $PACKAGE_NAME.js.map
-    - perl -pe "s/.\\/dev.js/./$PACKAGE_NAME-git-$CI_BUILD_REF.js/" www/index.html > index.html
+    - perl -pe "s/.\\/dev.js/.\\/$PACKAGE_NAME-git-$CI_BUILD_REF.js/" www/index.html > index.html
     - cat index.html
   artifacts:
     expire_in: 1 week
