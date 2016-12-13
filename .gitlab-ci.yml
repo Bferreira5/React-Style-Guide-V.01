@@ -32,9 +32,12 @@ build-in-docker:
     - docker build --force-rm -t $BASE_TAG .
     - docker run --rm  -i $BASE_TAG cat www/$PACKAGE_NAME.js > $PACKAGE_NAME.js
     - docker run --rm  -i $BASE_TAG cat www/$PACKAGE_NAME.js.map > $PACKAGE_NAME.js.map
+    - perl -pe "s/.\\/dev.js/./$PACKAGE_NAME-git-$CI_BUILD_REF.js/' www/index.html > index.html
+    - cat index.html
   artifacts:
     expire_in: 1 week
     paths:
+    - index.html
     - style-guide.js
     - style-guide.js.map
 
@@ -47,6 +50,7 @@ build-in-docker:
 push-to-aws-dev:
     stage: push
     script:
+      - AWS_ACCESS_KEY_ID=$AWS_DEV_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY=$AWS_DEV_SECRET_ACCESS_KEY $AWS_S3_CP index.html s3://$AWS_S3_BUCKET_PREFIX-dev/$PACKAGE_NAME-git-$CI_BUILD_REF.html
       - AWS_ACCESS_KEY_ID=$AWS_DEV_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY=$AWS_DEV_SECRET_ACCESS_KEY $AWS_S3_CP $PACKAGE_NAME.js s3://$AWS_S3_BUCKET_PREFIX-dev/$PACKAGE_NAME-git-$CI_BUILD_REF.js
       - AWS_ACCESS_KEY_ID=$AWS_DEV_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY=$AWS_DEV_SECRET_ACCESS_KEY $AWS_S3_CP $PACKAGE_NAME.js.map s3://$AWS_S3_BUCKET_PREFIX-dev/$PACKAGE_NAME-git-$CI_BUILD_REF.js.map
     only:
@@ -57,6 +61,7 @@ push-to-aws-dev:
 push-release-tag-to-aws-main:
   stage: push
   script:
+    - AWS_ACCESS_KEY_ID=$AWS_DEV_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY=$AWS_DEV_SECRET_ACCESS_KEY $AWS_S3_CP index.html s3://$AWS_S3_BUCKET_PREFIX-prod/$PACKAGE_NAME-git-$CI_BUILD_REF.html
     - AWS_ACCESS_KEY_ID=$AWS_MAIN_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY=$AWS_MAIN_SECRET_ACCESS_KEY $AWS_S3_CP $PACKAGE_NAME.js s3://$AWS_S3_BUCKET_PREFIX-prod/$PACKAGE_NAME-$CI_BUILD_TAG.js
     - AWS_ACCESS_KEY_ID=$AWS_MAIN_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY=$AWS_MAIN_SECRET_ACCESS_KEY $AWS_S3_CP $PACKAGE_NAME.js.map s3://$AWS_S3_BUCKET_PREFIX-prod/$PACKAGE_NAME-$CI_BUILD_TAG.js.map
   only:
@@ -65,6 +70,7 @@ push-release-tag-to-aws-main:
 push-release-tag-to-aws-dev:
   stage: push
   script:
+    - AWS_ACCESS_KEY_ID=$AWS_DEV_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY=$AWS_DEV_SECRET_ACCESS_KEY $AWS_S3_CP index.html s3://$AWS_S3_BUCKET_PREFIX-dev/$PACKAGE_NAME-git-$CI_BUILD_TAG.html
     - AWS_ACCESS_KEY_ID=$AWS_DEV_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY=$AWS_DEV_SECRET_ACCESS_KEY $AWS_S3_CP $PACKAGE_NAME.js s3://$AWS_S3_BUCKET_PREFIX-dev/$PACKAGE_NAME-$CI_BUILD_TAG.js
     - AWS_ACCESS_KEY_ID=$AWS_DEV_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY=$AWS_DEV_SECRET_ACCESS_KEY $AWS_S3_CP $PACKAGE_NAME.js.map s3://$AWS_S3_BUCKET_PREFIX-dev/$PACKAGE_NAME-$CI_BUILD_TAG.js.map
   only:
