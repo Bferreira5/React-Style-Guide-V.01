@@ -10,4 +10,4 @@ www/dev.js
 npm-debug.log
 yarn-error.log
 /coverage
-www/clinical-inputs.js*
+www/style-guide.js*

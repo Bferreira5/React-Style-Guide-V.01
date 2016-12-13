@@ -29,8 +29,8 @@ build-in-docker:
   stage: build
   script:
     - docker build --force-rm -t $BASE_TAG .
-    - docker run --rm  -i $BASE_TAG cat www/clinical-inputs.js > $PACKAGE_NAME.js
-    - docker run --rm  -i $BASE_TAG cat www/clinical-inputs.js.map > $PACKAGE_NAME.js.map
+    - docker run --rm  -i $BASE_TAG cat www/$PACKAGE_NAME.js > $PACKAGE_NAME.js
+    - docker run --rm  -i $BASE_TAG cat www/$PACKAGE_NAME.js.map > $PACKAGE_NAME.js.map
   artifacts:
     expire_in: 1 week
     paths:
