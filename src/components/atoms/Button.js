@@ -17,13 +17,13 @@ export class ButtonRaisedComponent extends Component {
     return (
       <div className="guide-component-preview">
         <div className="guide-component-inner">
-           <ButtonRaisedDescription />
+          <ButtonRaisedDescription />
+          <p>code</p>
+          <ButtonRaisedCode />
         </div>
         <div className="guide-component-inner">
           <p>Preview</p>
           <ButtonRaisedRaw />
-          <p>code</p>
-          <ButtonRaisedCode />
         </div>
       </div>
     );

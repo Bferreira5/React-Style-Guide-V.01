@@ -316,17 +316,11 @@ Intro Section
 
 .guide-tile {
 	display: block;
-	cursor: pointer;
 	list-style: none;
 	padding: 1.5rem;
     margin: 1.5rem 0;
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
     background-color: #FFFFFF;
-    a { 
-		cursor: pointer;
-		text-decoration: none;
-		color: inherit;
-    }
 }
 
 .guide-component-preview {
@@ -339,10 +333,11 @@ Intro Section
 @media only screen and (min-width: 1024px) {
 	.guide-component-preview {
 		 display: flex;
-		 align-items: center;
+		 align-items: top;
 		.guide-component-inner {
 			flex: 1;
 			padding: 1.5rem;
+			width: 50%;
 		}
 	}
 }

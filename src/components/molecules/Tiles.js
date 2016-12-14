@@ -4,6 +4,11 @@ import ReactDOM from 'react-dom'
 import ReactDOMServer from 'react-dom/server'
 import DevTools from 'mobx-react-devtools'
 
+import IconCopy from '../icons/IconCopy'
+import IconDelete from '../icons/IconDelete'
+
+import tileBackground from '../../assets/quick_analysis_tile.png'
+
 import SyntaxHighlighter, { registerLanguage } from "react-syntax-highlighter/dist/light"
 import js from 'highlight.js/lib/languages/javascript';
 import docco from 'react-syntax-highlighter/dist/styles/docco'; 
@@ -14,16 +19,17 @@ registerLanguage('javascript', js);
 
 export class TileComponent extends Component {
   render() {
+
     return (
       <div className="guide-component-preview">
         <div className="guide-component-inner">
-           <TileDescription />
+          <TileDescription />
+          <p>code</p>
+          <TileCode />
         </div>
         <div className="guide-component-inner">
           <p>Preview</p>
           <TileRaw />
-          <p>code</p>
-          <TileCode />
         </div>
       </div>
     );
@@ -45,17 +51,22 @@ export class TileCode extends Component {
   render() {
 	// const Code = ReactDOMServer.renderToStaticMarkup(<TileRaw />);
   const Code = `
-      <li className="tile">
-        <div className="tile-background">
-          
+      <li className={css}>
+        <div className='tile-background'>
+          <img className="tile-image" src={tileBackground} />
         </div>
-        <div className="tile-name">
-          <span>Untitled analysis</span>
+        <div className='tile-name'>
+          <span>Project Title</span>
         </div>
-        <ul className="tile-controls" >
-          <li className="delete" >
+        <ul className="tile-controls">
+          <li className="delete">
             <i className="icon">
-              
+              <IconDelete />
+            </i>
+          </li>
+          <li className="copy">
+            <i className="tile-actions">
+              <IconCopy />
             </i>
           </li>
         </ul>
@@ -68,19 +79,26 @@ export class TileCode extends Component {
 }
 
 export class TileRaw extends Component {
-  render() {
-    return (
-      <li className="tile">
-        <div className="tile-background">
-          
+render() {
+  let css = 'tile'
+
+  return (
+      <li className={css}>
+        <div className='tile-background'>
+          <img className="tile-image" src={tileBackground} />
         </div>
-        <div className="tile-name">
-          <span>Untitled analysis</span>
+        <div className='tile-name'>
+          <span>Project Title</span>
         </div>
-        <ul className="tile-controls" >
-          <li className="delete" >
+        <ul className="tile-controls">
+          <li className="delete">
             <i className="icon">
-              
+              <IconDelete />
+            </i>
+          </li>
+          <li className="copy">
+            <i className="tile-actions">
+              <IconCopy />
             </i>
           </li>
         </ul>
