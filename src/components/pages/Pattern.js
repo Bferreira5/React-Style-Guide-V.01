@@ -70,20 +70,11 @@ export class PatternAll extends Component {
     return (
       <div className="">
         <h1>Atoms</h1>
-        <ul>
-          <li className="guide-tile"><ButtonRaisedComponent /></li>
-          <li className="guide-tile"></li>
-        </ul>
+         <PatternAtoms />
         <h1>Molecules</h1>
-        <ul>
-          <li className="guide-tile"><TileComponent /></li>
-          <li className="guide-tile"></li>
-        </ul>
+          <PatternMolecules />
         <h1>Organisms</h1>
-        <ul>
-          <li className="guide-tile"></li>
-          <li className="guide-tile"></li>
-        </ul>
+          <PatternOrganism />
       </div>
     );
   }
@@ -191,7 +182,7 @@ export class PatternOrganism extends Component {
   render() {
     return (
       <ul>
-        <li className="guide-tile"><a href="#/pattern/atoms/button"><ButtonRaisedComponent /></a></li>
+        <li className="guide-tile"><TileComponent /></li>
         <li className="guide-tile"><ButtonRaisedComponent /></li>
       </ul>
     );

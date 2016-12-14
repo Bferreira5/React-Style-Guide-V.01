@@ -14,6 +14,8 @@ import { PrintContent } from './pages/Print'
 import { ResearchContent } from './pages/Research'
 
 
+import IconLogoFlat from '../assets/IconLogoFlat.svg'
+
 class App extends Component {
   render() {
     return (
@@ -69,7 +71,7 @@ class TopBar extends Component {
         
         return (
           <header className={"guide-auto-hide-header " + classHide + classToggle }>
-            <div className="logo"><a href="#/"><img src="" alt="Logo" /></a></div>
+            <div className="logo"><a href="#/"><img src={IconLogoFlat} alt="Logo" /></a></div>
             <nav className="guide-primary-nav">
                 <a onClick={this.click.bind(this)} className="nav-trigger">
                     <span>
