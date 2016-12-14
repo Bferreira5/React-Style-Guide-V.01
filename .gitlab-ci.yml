@@ -1,0 +1,95 @@
+stages:
+  - build
+  - test
+  - push
+  - cleanup
+
+variables:
+  AWS_MAIN_REGISTRY: '556334022518.dkr.ecr.us-east-1.amazonaws.com/foundation-ice'
+  AWS_MAIN_ACCESS_KEY_ID: 'AKIAJLKKDEEZ6S32FA6A'
+  AWS_MAIN_SECRET_ACCESS_KEY: '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'
+  AWS_DEV_REGISTRY: '397090398856.dkr.ecr.us-east-1.amazonaws.com/tech-products'
+  AWS_DEV_ACCESS_KEY_ID: 'AKIAIXQ2BDSLRBVNF4KQ'
+  AWS_DEV_SECRET_ACCESS_KEY: '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'
+  AWS_DEFAULT_REGION: 'us-east-1'
+
+before_script:
+  - df -h
+  - export PACKAGE_NAME=`basename $CI_BUILD_REPO .git`
+  - export BASE_TAG=$PACKAGE_NAME:git-$CI_BUILD_REF
+  - export AWS_MAIN_TAG=$AWS_MAIN_REGISTRY/$BASE_TAG
+  - export AWS_DEV_TAG=$AWS_DEV_REGISTRY/$BASE_TAG
+  - export ALL_REPOS="$PACKAGE_NAME $AWS_MAIN_REGISTRY/$PACKAGE_NAME $AWS_DEV_REGISTRY/$PACKAGE_NAME"
+  - export RELEASE_BASE_TAG=$PACKAGE_NAME:$CI_BUILD_TAG
+  - export RELEASE_AWS_MAIN_TAG=$AWS_MAIN_REGISTRY/$RELEASE_BASE_TAG
+  - export RELEASE_AWS_DEV_TAG=$AWS_DEV_REGISTRY/$RELEASE_BASE_TAG
+  - export AWS_S3_BUCKET_PREFIX=fmi-techproducts-shared
+  - export AWS_S3_CP="aws s3 cp --acl public-read"
+
+build-in-docker:
+  stage: build
+  script:
+    - docker build --force-rm -t $BASE_TAG .
+    - docker run --rm  -i $BASE_TAG cat www/$PACKAGE_NAME.js > $PACKAGE_NAME.js
+    - docker run --rm  -i $BASE_TAG cat www/$PACKAGE_NAME.js.map > $PACKAGE_NAME.js.map
+    - perl -pe "s/.\\/dev.js/.\\/$PACKAGE_NAME-git-$CI_BUILD_REF.js/" www/index.html > index.html
+    - cat index.html
+  artifacts:
+    expire_in: 1 week
+    paths:
+    - index.html
+    - style-guide.js
+    - style-guide.js.map
+
+## TODO: re-enable this when the automated tests are passing
+# test-in-docker:
+#   stage: test
+#   script:
+#     - docker run --rm  -i $BASE_TAG yarn test
+
+push-to-aws-dev:
+    stage: push
+    script:
+      - AWS_ACCESS_KEY_ID=$AWS_DEV_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY=$AWS_DEV_SECRET_ACCESS_KEY $AWS_S3_CP $PACKAGE_NAME.js s3://$AWS_S3_BUCKET_PREFIX-dev/$PACKAGE_NAME-git-$CI_BUILD_REF.js
+      - AWS_ACCESS_KEY_ID=$AWS_DEV_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY=$AWS_DEV_SECRET_ACCESS_KEY $AWS_S3_CP $PACKAGE_NAME.js.map s3://$AWS_S3_BUCKET_PREFIX-dev/$PACKAGE_NAME-git-$CI_BUILD_REF.js.map
+      - AWS_ACCESS_KEY_ID=$AWS_DEV_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY=$AWS_DEV_SECRET_ACCESS_KEY $AWS_S3_CP index.html s3://$AWS_S3_BUCKET_PREFIX-dev/$PACKAGE_NAME-git-$CI_BUILD_REF.html
+    only:
+      - development
+      - master
+      - tags
+
+push-release-tag-to-aws-main:
+  stage: push
+  script:
+    - AWS_ACCESS_KEY_ID=$AWS_MAIN_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY=$AWS_MAIN_SECRET_ACCESS_KEY $AWS_S3_CP $PACKAGE_NAME.js s3://$AWS_S3_BUCKET_PREFIX-prod/$PACKAGE_NAME-$CI_BUILD_TAG.js
+    - AWS_ACCESS_KEY_ID=$AWS_MAIN_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY=$AWS_MAIN_SECRET_ACCESS_KEY $AWS_S3_CP $PACKAGE_NAME.js.map s3://$AWS_S3_BUCKET_PREFIX-prod/$PACKAGE_NAME-$CI_BUILD_TAG.js.map
+    - AWS_ACCESS_KEY_ID=$AWS_DEV_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY=$AWS_DEV_SECRET_ACCESS_KEY $AWS_S3_CP index.html s3://$AWS_S3_BUCKET_PREFIX-prod/$PACKAGE_NAME.html
+    - AWS_ACCESS_KEY_ID=$AWS_DEV_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY=$AWS_DEV_SECRET_ACCESS_KEY $AWS_S3_CP index.html s3://$AWS_S3_BUCKET_PREFIX-prod/$PACKAGE_NAME-git-$CI_BUILD_REF.html
+  only:
+    - tags
+
+push-release-tag-to-aws-dev:
+  stage: push
+  script:
+    - AWS_ACCESS_KEY_ID=$AWS_DEV_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY=$AWS_DEV_SECRET_ACCESS_KEY $AWS_S3_CP $PACKAGE_NAME.js s3://$AWS_S3_BUCKET_PREFIX-dev/$PACKAGE_NAME-$CI_BUILD_TAG.js
+    - AWS_ACCESS_KEY_ID=$AWS_DEV_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY=$AWS_DEV_SECRET_ACCESS_KEY $AWS_S3_CP $PACKAGE_NAME.js.map s3://$AWS_S3_BUCKET_PREFIX-dev/$PACKAGE_NAME-$CI_BUILD_TAG.js.map
+    - AWS_ACCESS_KEY_ID=$AWS_DEV_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY=$AWS_DEV_SECRET_ACCESS_KEY $AWS_S3_CP index.html s3://$AWS_S3_BUCKET_PREFIX-dev/$PACKAGE_NAME.html
+    - AWS_ACCESS_KEY_ID=$AWS_DEV_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY=$AWS_DEV_SECRET_ACCESS_KEY $AWS_S3_CP index.html s3://$AWS_S3_BUCKET_PREFIX-dev/$PACKAGE_NAME-git-$CI_BUILD_TAG.html
+  only:
+    - tags
+
+# delete all docker images for this project EXCEPT the one we
+# just built, because we want to use this image as a basis for
+# the next build
+cleanup:
+  stage: cleanup
+  script:
+    - docker logout
+    # debug check
+    - docker images --format '{{.Repository}}:{{.Tag}} {{.CreatedSince}}' $BASE_TAG
+    # clean up images for this project.
+    # keep images that are less than an hour old.
+    # gitlab CI does not properly support multiline commands, even with YAML multiline syntax,
+    # sorry this is unreadable. :-(
+    - if [[ ! -z `docker images --format {{.Tag}} $BASE_TAG` ]]; then for REPO in $ALL_REPOS; do docker images --format '{{.Repository}}:{{.Tag}} {{.CreatedSince}}' $REPO | grep -v ' second' | grep -v ' minute' | cut -f 1 -d ' ' | xargs --no-run-if-empty docker rmi || true; done; fi
+  when: always

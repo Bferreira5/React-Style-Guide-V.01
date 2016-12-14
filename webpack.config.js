@@ -26,7 +26,7 @@ if (!isDevelopment) {
 const production = {
   devtool: 'source-map',
   entry: {
-    'clinical-inputs': './src/index'
+    'style-guide': './src/index'
   },
   output: {
     path: path.join(__dirname, 'www'),
