@@ -100,6 +100,7 @@ function SubNav() {
         <div path="/pattern/atoms"><PatternSubNav /></div>
           <div path="/pattern/atoms/button"><PatternSubNav /></div>
         <div path="/pattern/molecules"><PatternSubNav /></div>
+          <div path="/pattern/molecules/tiles"><PatternSubNav /></div>
         <div path="/pattern/organisms"><PatternSubNav /></div>
       <div path="/brand"><BrandSubNav /></div>
         <div path="/brand/atoms"><BrandSubNav /></div>
@@ -120,6 +121,7 @@ function MainContent() {
         <div path="/pattern/atoms"><PatternContent /></div>
           <div path="/pattern/atoms/button"><PatternContent /></div>
         <div path="/pattern/molecules"><PatternContent /></div>
+          <div path="/pattern/molecules/tiles"><PatternContent /></div>
         <div path="/pattern/organisms"><PatternContent /></div>
       <div path="/brand"><BrandContent /></div>
         <div path="/brand/atoms"><BrandContent /></div>

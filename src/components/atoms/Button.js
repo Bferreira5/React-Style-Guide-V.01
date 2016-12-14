@@ -15,10 +15,16 @@ registerLanguage('javascript', js);
 export class ButtonRaisedComponent extends Component {
   render() {
     return (
-      <div className="">
-        <h1>Button</h1>
-        <ButtonRaisedDescription />
-        <ButtonRaisedCode />
+      <div className="guide-component-preview">
+        <div className="guide-component-inner">
+           <ButtonRaisedDescription />
+        </div>
+        <div className="guide-component-inner">
+          <p>Preview</p>
+          <ButtonRaisedRaw />
+          <p>code</p>
+          <ButtonRaisedCode />
+        </div>
       </div>
     );
   }
@@ -27,9 +33,9 @@ export class ButtonRaisedComponent extends Component {
 export class ButtonRaisedDescription extends Component {
   render() {
     return (
-      <div className="">
-        <h2>Type: Flat Button</h2>
-        <p>Usecase: Kitsch tbh YOLO put a bird on it bicycle rights pitchfork cold-pressed disrupt, fingerstache 3 wolf moon chia typewriter pok pok narwhal.</p> 
+      <div className="guide-component-description">
+        <h2>Raised Button</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum</p> 
       </div>
     );
   }
@@ -39,10 +45,7 @@ export class ButtonRaisedCode extends Component {
   render() {
 	const Code = ReactDOMServer.renderToStaticMarkup(<ButtonRaisedRaw />);
   return (  	
-    	<div>
-    	<ButtonRaisedRaw />
-          <SyntaxHighlighter language='javascript' style={docco}>{ Code }</SyntaxHighlighter>
-      </div>
+        <SyntaxHighlighter language='javascript' style={docco}>{ Code }</SyntaxHighlighter>
     );
   }
 }

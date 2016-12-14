@@ -8,7 +8,9 @@ import Switcher from 'switcheroo'
 
 import testImage from '../../assets/one.png'
 
-import { ButtonRaisedComponent } from '../button/Button'
+import { ButtonRaisedComponent } from '../atoms/Button'
+
+import { TileComponent } from '../molecules/Tiles'
 
 export class PatternSubNav extends Component {
   render() {
@@ -67,13 +69,21 @@ export class PatternAll extends Component {
   render() {
     return (
       <div className="">
-        <h1>All Patterns including atoms, molecules and organisms</h1>
-        <h2>Atoms</h2>
-          <p>All the atom modules go here</p>
-        <h2>Molecules</h2>
-          <p>All the Molecules modules go here</p>
-        <h2>Organisms</h2>
-          <p>All the Organisms modules go here</p>
+        <h1>Atoms</h1>
+        <ul>
+          <li className="guide-tile"><ButtonRaisedComponent /></li>
+          <li className="guide-tile"></li>
+        </ul>
+        <h1>Molecules</h1>
+        <ul>
+          <li className="guide-tile"><TileComponent /></li>
+          <li className="guide-tile"></li>
+        </ul>
+        <h1>Organisms</h1>
+        <ul>
+          <li className="guide-tile"></li>
+          <li className="guide-tile"></li>
+        </ul>
       </div>
     );
   }
@@ -87,8 +97,11 @@ export class PatternAllAside extends Component {
           <input id="toggle2" type="checkbox" />
           <label htmlFor="toggle2">Components</label>
           <ul>
-            <li className="seperator">Atoms Components</li>
+            <li className="seperator">Atoms</li>
             <li><a href="#/pattern/atoms/button">Buttons</a></li>
+            <li className="seperator">Molecules</li>
+            <li><a href="#/pattern/molecules/tiles">Tiles</a></li>
+            <li className="seperator">Organisms</li>
           </ul>
         </dropdown>
         <div className="side-nav-desktop">
@@ -97,9 +110,8 @@ export class PatternAllAside extends Component {
             <li className="seperator">Atoms</li>
             <li><a href="#/pattern/atoms/button">Buttons</a></li>
             <li className="seperator">Molecules</li>
-            <li><a href="#/pattern/atoms/button">Buttons</a></li>
+            <li><a href="#/pattern/molecules/tiles">Tiles</a></li>
             <li className="seperator">Organisms</li>
-            <li><a href="#/pattern/atoms/button">Buttons</a></li>
           </ul>
         </div>
       </nav>
@@ -146,8 +158,8 @@ export class PatternMolecules extends Component {
   render() {
     return (
       <ul>
-        <li className="guide-tile"><ButtonRaisedComponent /></li>
-        <li className="guide-tile"><ButtonRaisedComponent /></li>
+        <li className="guide-tile"><TileComponent /></li>
+        <li className="guide-tile"><TileComponent /></li>
       </ul>
     );
   }
@@ -162,14 +174,12 @@ export class PatternAllMolecules extends Component {
           <label htmlFor="toggle2">Molecules Components</label>
           <ul>
             <li className="seperator">Molecules Components</li>
-            <li><a href="#/pattern/atoms/button">Buttons</a></li>
           </ul>
         </dropdown>
         <div className="side-nav-desktop">
           <label><a href="#/pattern/">Back Components</a></label>
           <ul>
             <li className="seperator">Molecules</li>
-            <li><a href="#/pattern/molecules/button">Buttons</a></li>
           </ul>
         </div>
       </nav>
@@ -181,7 +191,7 @@ export class PatternOrganism extends Component {
   render() {
     return (
       <ul>
-        <li className="guide-tile"><ButtonRaisedComponent /></li>
+        <li className="guide-tile"><a href="#/pattern/atoms/button"><ButtonRaisedComponent /></a></li>
         <li className="guide-tile"><ButtonRaisedComponent /></li>
       </ul>
     );
@@ -197,14 +207,13 @@ export class PatternAllOrganisms extends Component {
           <label htmlFor="toggle2">Pattern Components</label>
           <ul>
             <li className="seperator">Pattern Components</li>
-            <li><a href="#/pattern/organisms/button">Buttons</a></li>
           </ul>
         </dropdown>
         <div className="side-nav-desktop">
           <label><a href="#/pattern/">Components</a></label>
           <ul>
             <li className="seperator">Pattern</li>
-            <li><a href="#/pattern/organisms/button">Buttons</a></li>
+            
           </ul>
         </div>
       </nav>
@@ -222,8 +231,9 @@ function PatternComponents() {
       <div className="guide-components-listing" path="/pattern"><PatternAll/></div>
         <div className="guide-components-listing" path="/pattern/atoms"><PatternAtoms/></div>
           <div className="guide-components-listing" path="/pattern/atoms/button"><ButtonRaisedComponent /></div>
-        <div className="guide-components-listing" path="/pattern/molecules"><PatternMolecules/></div>
-        <div className="guide-components-listing" path="/pattern/organisms"><PatternOrganism/></div>
+        <div className="guide-components-listing" path="/pattern/molecules"><PatternMolecules /></div>
+          <div className="guide-components-listing" path="/pattern/molecules/tiles"><TileComponent /></div>
+        <div className="guide-components-listing" path="/pattern/organisms"><PatternOrganism /></div>
     </Switcher>
   );
 }
@@ -235,6 +245,7 @@ function PatternAside() {
         <aside className="guide-aside" path="/pattern/atoms"><PatternAllAtoms/></aside>
           <aside className="guide-aside" path="/pattern/atoms/button"><PatternAllAtoms/></aside>
         <aside className="guide-aside" path="/pattern/molecules"><PatternAllMolecules/></aside>
+          <aside className="guide-aside" path="/pattern/molecules/tiles"><PatternAllMolecules /></aside>
         <aside className="guide-aside" path="/pattern/organisms"><PatternAllOrganisms/></aside>
     </Switcher>
   );
