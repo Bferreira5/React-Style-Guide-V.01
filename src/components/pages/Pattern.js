@@ -122,7 +122,9 @@ export class PatternAllAtoms extends Component {
         <dropdown className="guide-component-dropdown">
           <input id="toggle2" type="checkbox" />
           <label htmlFor="toggle2">Atoms Components</label>
-          <PatternAsideAtoms />
+          <div className="dropdown-container">
+            <PatternAsideAtoms/>
+          </div>
         </dropdown>
         <div className="side-nav-desktop">
           <label><a href="#/pattern/">Back to Components</a></label>
@@ -139,14 +141,6 @@ export class PatternAsideAtoms extends Component {
       <ul>
         <li className="seperator">Atoms</li>
         <li><a href="#/pattern/atoms/button">Buttons</a></li>
-        <ul>
-          <li><a href="#/pattern/atoms/button">Flat Buttons</a></li>
-          <li><a href="#/pattern/atoms/button">Raised Buttons</a></li>
-          <li><a href="#/pattern/atoms/button">Compound Action Buttons</a></li>
-          <li><a href="#/pattern/atoms/button">Icon Buttons</a></li>
-          <li><a href="#/pattern/atoms/button">Collaped Action Icons</a></li>
-          <li><a href="#/pattern/atoms/button">Add an Item</a></li>
-        </ul>
         <li><a href="">Checkboxes & Radio Buttons</a></li>
         <li><a href="">Toggles</a></li>
         <li><a href="">Sliders</a></li>
@@ -180,7 +174,9 @@ export class PatternAllMolecules extends Component {
         <dropdown className="guide-component-dropdown">
           <input id="toggle2" type="checkbox" />
           <label htmlFor="toggle2">Molecules Components</label>
-          <PatternAsideMolecules />
+          <div className="dropdown-container">
+            <PatternAsideMolecules />
+          </div>
         </dropdown>
         <div className="side-nav-desktop">
           <label><a href="#/pattern/">Back to Components</a></label>
@@ -219,7 +215,9 @@ export class PatternAllOrganisms extends Component {
         <dropdown className="guide-component-dropdown">
           <input id="toggle2" type="checkbox" />
           <label htmlFor="toggle2">Pattern Components</label>
-          <PatternAsideOrganisms />
+          <div className="dropdown-container">
+            <PatternAsideOrganisms />
+          </div>
         </dropdown>
         <div className="side-nav-desktop">
           <label><a href="#/pattern/">Back to Components</a></label>
