@@ -12,45 +12,45 @@ registerLanguage('javascript', js);
 
 
 
-export class ButtonRaisedComponent extends Component {
+export class TogglesComponent extends Component {
   render() {
     return (
       <div className="guide-component-preview">
         <div className="guide-component-inner">
-          <ButtonRaisedDescription />
+          <TogglesDescription />
           <p>code</p>
-          <ButtonRaisedCode />
+          <TogglesCode />
         </div>
         <div className="guide-component-inner">
           <p>Preview</p>
-          <ButtonRaisedRaw />
+          <TogglesRaw />
         </div>
       </div>
     );
   }
 }
 
-export class ButtonRaisedDescription extends Component {
+export class TogglesDescription extends Component {
   render() {
     return (
       <div className="guide-component-description">
-        <h2>Raised Button</h2>
+        <h2>Toggles</h2>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum</p> 
       </div>
     );
   }
 }
 
-export class ButtonRaisedCode extends Component {
+export class TogglesCode extends Component {
   render() {
-	const Code = ReactDOMServer.renderToStaticMarkup(<ButtonRaisedRaw />);
+	const Code = ReactDOMServer.renderToStaticMarkup(<TogglesRaw />);
   return (  	
         <SyntaxHighlighter language='javascript' style={docco}>{ Code }</SyntaxHighlighter>
     );
   }
 }
 
-export class ButtonRaisedRaw extends Component {
+export class TogglesRaw extends Component {
   render() {
     return (
     	<button className="button__raised--standard">Standard Button</button>
