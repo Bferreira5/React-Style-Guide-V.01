@@ -35,6 +35,7 @@ export class ButtonComActionDescription extends Component {
     return (
       <div className="guide-component-description">
         <h2>Button Compound Action</h2>
+        <h3>Does not exist in any production codebase.</h3>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum</p> 
       </div>
     );
@@ -53,7 +54,7 @@ export class ButtonComActionCode extends Component {
 export class ButtonComActionRaw extends Component {
   render() {
     return (
-    	<button className="button__raised--standard">Standard Button</button>
+    	<div>Compound Action Buttons</div>
     );
   }
 }

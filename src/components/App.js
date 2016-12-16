@@ -111,7 +111,8 @@ function SubNav() {
           <div path="/pattern/atoms/scrollbars"><PatternSubNav /></div>    
           <div path="/pattern/atoms/sliders"><PatternSubNav /></div>    
           <div path="/pattern/atoms/toggles"><PatternSubNav /></div>
-          <div path="/pattern/atoms/tooltips"><PatternSubNav /></div> 
+          <div path="/pattern/atoms/tooltips"><PatternSubNav /></div>
+          <div path="/pattern/atoms/badges"><PatternSubNav /></div>
         <div path="/pattern/molecules"><PatternSubNav /></div>
           <div path="/pattern/molecules/tiles"><PatternSubNav /></div>
         <div path="/pattern/organisms"><PatternSubNav /></div>
@@ -143,6 +144,7 @@ function MainContent() {
           <div path="/pattern/atoms/scrollbars"><PatternContent /></div>    
           <div path="/pattern/atoms/sliders"><PatternContent /></div>    
           <div path="/pattern/atoms/toggles"><PatternContent /></div>
+          <div path="/pattern/atoms/badges"><PatternContent /></div>
           <div path="/pattern/atoms/tooltips"><PatternContent /></div>      
         <div path="/pattern/molecules"><PatternContent /></div>
           <div path="/pattern/molecules/tiles"><PatternContent /></div>

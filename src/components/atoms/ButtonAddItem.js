@@ -4,6 +4,9 @@ import ReactDOM from 'react-dom'
 import ReactDOMServer from 'react-dom/server'
 import DevTools from 'mobx-react-devtools'
 
+
+import PlusButton from '../../assets/plus-button.svg'
+
 import SyntaxHighlighter, { registerLanguage } from "react-syntax-highlighter/dist/light"
 import js from 'highlight.js/lib/languages/javascript';
 import docco from 'react-syntax-highlighter/dist/styles/docco'; 
@@ -43,7 +46,8 @@ export class ButtonAddItemDescription extends Component {
 
 export class ButtonAddItemCode extends Component {
   render() {
-	const Code = ReactDOMServer.renderToStaticMarkup(<ButtonAddItemRaw />);
+	 // const Code = ReactDOMServer.renderToStaticMarkup(<ButtonCollapseActionRaw />);
+  const Code = '<a href="#"><img src={ PlusButton } /></a>';
   return (  	
         <SyntaxHighlighter language='javascript' style={docco}>{ Code }</SyntaxHighlighter>
     );
@@ -53,7 +57,7 @@ export class ButtonAddItemCode extends Component {
 export class ButtonAddItemRaw extends Component {
   render() {
     return (
-    	<button className="button__raised--standard">Standard Button</button>
+    	<img src={ PlusButton } />
     );
   }
 }

@@ -4,6 +4,9 @@ import ReactDOM from 'react-dom'
 import ReactDOMServer from 'react-dom/server'
 import DevTools from 'mobx-react-devtools'
 
+import IconCopy from '../icons/IconCopy'
+import IconDelete from '../icons/IconDelete'
+
 import SyntaxHighlighter, { registerLanguage } from "react-syntax-highlighter/dist/light"
 import js from 'highlight.js/lib/languages/javascript';
 import docco from 'react-syntax-highlighter/dist/styles/docco'; 

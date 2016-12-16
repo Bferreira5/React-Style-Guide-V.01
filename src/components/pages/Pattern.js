@@ -133,6 +133,7 @@ export class PatternAtoms extends Component {
         <li className="guide-tile"><SlidersComponent /></li>
         <li className="guide-tile"><TogglesComponent /></li>
         <li className="guide-tile"><TooltipsComponent /></li>
+        <li className="guide-tile"><BadgesComponent /></li>
       </ul>
     );
   }
@@ -163,18 +164,18 @@ export class PatternAsideAtoms extends Component {
     return (
       <ul>
         <li className="seperator">Atoms</li>
-        <li><a href="#/pattern/atoms/button-raised">Buttons</a></li>
-        <li><a href="">Checkboxes & Radio Buttons</a></li>
-        <li><a href="">Toggles</a></li>
-        <li><a href="">Sliders</a></li>
-        <li><a href="">Scroll Bars</a></li>
-        <li><a href="">Tooltips</a></li>
-        <li><a href="">Form Fields</a></li>
-        <li><a href="">Dropdown</a></li>
-        <li><a href="">Search Fields</a></li>
-        <li><a href="">Search Fields</a></li>
-        <li><a href="">Cards</a></li>
-        <li><a href="">Badges</a></li>
+        <li><a href="#/pattern/atoms/button-raised">Buttons Raised</a></li>
+        <li><a href="#/pattern/atoms/button-add">Button Add</a></li>
+        <li><a href="#/pattern/atoms/button-collapse">Button Collapse</a></li>
+        <li><a href="#/pattern/atoms/button-compound">Button Compound</a></li>
+        <li><a href="#/pattern/atoms/button-flat">Button Flat</a></li>
+        <li><a href="#/pattern/atoms/button-icon">Button Icon</a></li>
+        <li><a href="#/pattern/atoms/checkboxes">Checkboxes</a></li>
+        <li><a href="#/pattern/atoms/radioselector">Radio Selector</a></li>
+        <li><a href="#/pattern/atoms/sliders">Sliders</a></li>
+        <li><a href="#/pattern/atoms/toggles">Toggles</a></li>
+        <li><a href="#/pattern/atoms/tooltips">Tool Tips</a></li>
+        <li><a href="#/pattern/atoms/badges">Badges</a></li>
       </ul>
     );
   }
@@ -265,7 +266,6 @@ export class PatternAsideOrganisms extends Component {
 
 // Switcher routing for pattern
 
-
 function PatternComponents() {
   return (
     <Switcher>
@@ -274,14 +274,16 @@ function PatternComponents() {
           <div className="guide-components-listing" path="/pattern/atoms/button-raised"><ButtonRaisedComponent /></div>
           <div className="guide-components-listing" path="/pattern/atoms/button-add"><ButtonAddItemComponent /></div>
           <div className="guide-components-listing" path="/pattern/atoms/button-collapse"><ButtonCollapseActionComponent /></div>
-          <div className="guide-components-listing" path="/pattern/atoms/button-compound"><ButtonRaisedComponent /></div>
+          <div className="guide-components-listing" path="/pattern/atoms/button-compound"><ButtonComActionComponent /></div>
           <div className="guide-components-listing" path="/pattern/atoms/button-flat"><ButtonFlatComponent /></div>
           <div className="guide-components-listing" path="/pattern/atoms/button-icon"><ButtonIconComponent /></div>
           <div className="guide-components-listing" path="/pattern/atoms/checkboxes"><CheckboxesComponent /></div>
           <div className="guide-components-listing" path="/pattern/atoms/radioselector"><RadioSelectorComponent /></div>
           <div className="guide-components-listing" path="/pattern/atoms/scrollbars"><ScrollBarsComponent /></div>
+          <div className="guide-components-listing" path="/pattern/atoms/sliders"><SlidersComponent /></div>
           <div className="guide-components-listing" path="/pattern/atoms/toggles"><TogglesComponent /></div>
           <div className="guide-components-listing" path="/pattern/atoms/tooltips"><TooltipsComponent /></div>
+          <div className="guide-components-listing" path="/pattern/atoms/badges"><BadgesComponent /></div>
         <div className="guide-components-listing" path="/pattern/molecules"><PatternMolecules /></div>
           <div className="guide-components-listing" path="/pattern/molecules/tiles"><TileComponent /></div>
         <div className="guide-components-listing" path="/pattern/organisms"><PatternOrganism /></div>
@@ -303,8 +305,10 @@ function PatternAside() {
           <aside className="guide-aside" path="/pattern/atoms/checkboxes"><PatternAllAtoms/></aside>
           <aside className="guide-aside" path="/pattern/atoms/radioselector"><PatternAllAtoms/></aside>
           <aside className="guide-aside" path="/pattern/atoms/scrollbars"><PatternAllAtoms/></aside>
+          <aside className="guide-aside" path="/pattern/atoms/sliders"><PatternAllAtoms/></aside>
           <aside className="guide-aside" path="/pattern/atoms/toggles"><PatternAllAtoms/></aside>
           <aside className="guide-aside" path="/pattern/atoms/tooltips"><PatternAllAtoms/></aside>
+          <aside className="guide-aside" path="/pattern/atoms/badges"><PatternAllAtoms/></aside>
         <aside className="guide-aside" path="/pattern/molecules"><PatternAllMolecules/></aside>
           <aside className="guide-aside" path="/pattern/molecules/tiles"><PatternAllMolecules /></aside>
         <aside className="guide-aside" path="/pattern/organisms"><PatternAllOrganisms/></aside>

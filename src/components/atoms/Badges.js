@@ -33,6 +33,7 @@ export class BadgesDescription extends Component {
     return (
       <div className="guide-component-description">
         <h2>Badges</h2>
+        <h3>*Not in Production Codebase</h3>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum</p> 
       </div>
     );
@@ -51,7 +52,7 @@ export class BadgesCode extends Component {
 export class BadgesRaw extends Component {
   render() {
     return (
-    	<button className="button__raised--standard">Standard Button</button>
+    	<div>Empty</div>
     );
   }
 }
