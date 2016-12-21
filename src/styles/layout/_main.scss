@@ -341,6 +341,15 @@ Intro Section
 	.guide-component-inner {
 		width: 100%;
 	}
+	.guide-component-layout {
+			flex: 1;
+			padding: 1.5rem;
+			width: 100%;
+			img {
+				display: block;
+				max-width: 100%;
+			}
+		}
 }
 @media only screen and (min-width: 1024px) {
 	.guide-component-preview {
@@ -350,6 +359,15 @@ Intro Section
 			flex: 1;
 			padding: 1.5rem;
 			width: 50%;
+		}
+		.guide-component-layout {
+			flex: 1;
+			padding: 1.5rem;
+			width: 100%;
+			img {
+				display: block;
+				max-width: 100%;
+			}
 		}
 	}
 }
