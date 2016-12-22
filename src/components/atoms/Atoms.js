@@ -66,7 +66,7 @@ export class PatternAsideAtoms extends Component {
       <ul>
         <li className="seperator">Atoms</li>
         <li><a onClick={() => document.getElementById("Button_Raised").scrollIntoView(true)}>Buttons Raised</a></li>
-        <li><a onClick={() => document.getElementById("Button_Add").scrollIntoView(true)}>Button Add</a></li>Tooltips
+        <li><a onClick={() => document.getElementById("Button_Add").scrollIntoView(true)}>Button Add</a></li>
         <li><a onClick={() => document.getElementById("Button_Collapse").scrollIntoView(true)}>Button Collapse</a></li>
         <li><a onClick={() => document.getElementById("Button_Compound").scrollIntoView(true)}>Button Compound</a></li>
         <li><a onClick={() => document.getElementById("Button_Flat").scrollIntoView(true)}>Button Flat</a></li>

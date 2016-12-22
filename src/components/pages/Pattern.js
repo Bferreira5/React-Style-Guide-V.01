@@ -50,7 +50,7 @@ export class PatternContent extends Component {
       window.addEventListener('scroll',this.scrollNudge);
   }
   componentWillUnmount(){
-       window.removeEventListener('scroll',this.scrollNudge);
+      window.removeEventListener('scroll',this.scrollNudge);
   }
   render() {
     let classNudge=this.state.isNudge?"is-hidden-nudge":""

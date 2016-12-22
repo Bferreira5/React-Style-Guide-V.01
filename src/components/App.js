@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Provider, observer } from 'mobx-react'
 import DevTools from 'mobx-react-devtools'
-import Headroom from 'react-headroom'
+
 import Switcher from 'switcheroo'
 import classnames from 'classnames'
 import { PrismCode } from "react-prism"
@@ -34,16 +34,16 @@ class TopBar extends Component {
 
     constructor(props){
       super(props);
-      this.state={isHide:false};
-      this.hideBar = this.hideBar.bind(this);
+      this.state = {isHide:false};
 
+      this.hideBar = this.hideBar.bind(this);
       this.state = {isOpen: true};
     }
 
     click(e) {
         e.preventDefault();
         this.setState({isOpen: !this.state.isOpen}, function() {
-            this.props.onClick(this.state.isOpen);
+            (this.state.isOpen);
         });
     }
 
@@ -61,7 +61,7 @@ class TopBar extends Component {
         window.addEventListener('scroll',this.hideBar);
     }
     componentWillUnmount(){
-         window.removeEventListener('scroll',this.hideBar);
+        window.removeEventListener('scroll',this.hideBar);
     }
     render(){
 
@@ -103,9 +103,6 @@ function SubNav() {
         <div path="/pattern/molecules"><PatternSubNav /></div>
         <div path="/pattern/organisms"><PatternSubNav /></div>
       <div path="/brand"><BrandSubNav /></div>
-        <div path="/brand/atoms"><BrandSubNav /></div>
-        <div path="/brand/molecules"><BrandSubNav /></div>
-        <div path="/brand/organisms"><BrandSubNav /></div>
         <div path="/print"></div>
         <div path="/research"></div>
     </Switcher>
@@ -122,9 +119,6 @@ function MainContent() {
         <div path="/pattern/molecules"><PatternContent /></div>
         <div path="/pattern/organisms"><PatternContent /></div>
       <div path="/brand"><BrandContent /></div>
-        <div path="/brand/atoms"><BrandContent /></div>
-        <div path="/brand/molecules"><BrandContent /></div>
-        <div path="/brand/organisms"><BrandContent /></div>
       <div path="/print"><PrintContent /></div>
       <div path="/research"><ResearchContent /></div>
     </Switcher>

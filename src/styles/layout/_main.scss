@@ -112,12 +112,12 @@
 	text-indent: 10px;
 	line-height: 50px;
 }
-.guide-component-dropdown ul li {
+.guide-component-dropdown ul li, .guide-component-dropdown ul li.seperator {
 	display: block;
 	width: 200px;
 	background: #ECF0F1;
 }
-.guide-component-dropdown ul li a {
+.guide-component-dropdown ul li a, .guide-component-dropdown ul li.seperator {
 	display:block;
 	padding:0;
 	text-indent: 10px;	
@@ -128,6 +128,11 @@
 	background: $brand-color;
 	color: white;
 	cursor: pointer;
+
+}
+.guide-component-dropdown ul li.seperator:hover {
+	color: inherit;
+	cursor: auto
 }
 .guide-component-dropdown label {
 	color: $brand-color;
@@ -149,6 +154,7 @@
 .guide-component-dropdown input:checked + label {
 	background: $brand-color;
 	color: white;
+
 }
 .guide-component-dropdown input:checked ~ .dropdown-container {
 	visibility: visible;
@@ -175,6 +181,7 @@
 			text-decoration: none;
 			list-style: none;
 			a {
+				cursor: pointer;
 				line-height: 30px;
 				text-decoration: none;
 				border-left: 2px solid transparent;
@@ -346,6 +353,7 @@ Intro Section
 			padding: 1.5rem;
 			width: 100%;
 			img {
+				border: 1px solid black;
 				display: block;
 				max-width: 100%;
 			}

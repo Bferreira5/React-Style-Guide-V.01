@@ -1,7 +1,7 @@
 import _ from 'lodash'
 import React from 'react'
 import ReactDOM from 'react-dom'
-import Headroom from 'react-headroom'
+
 import { PrismCode } from "react-prism";
 import ReactDOMServer from 'react-dom/server'
 
