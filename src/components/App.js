@@ -2,20 +2,25 @@ import React, { Component } from 'react'
 import { Provider, observer } from 'mobx-react'
 import DevTools from 'mobx-react-devtools'
 
+// Dependicies for router and classnames
 import Switcher from 'switcheroo'
 import classnames from 'classnames'
-import { PrismCode } from "react-prism"
 
+// Primary component page and import page
+import { PatternContent, PatternSubNav } from './pages/Pattern'
+
+// Secondary static content (placeholder).
 import { LandingContent } from './pages/LandingPage'
 import { DesignContent } from './pages/Design'
-import { PatternContent, PatternSubNav } from './pages/Pattern'
 import { BrandContent, BrandSubNav } from './pages/Brand'
 import { PrintContent } from './pages/Print'
 import { ResearchContent } from './pages/Research'
 
-
+// Top level flat assets (Like the logo).
 import IconLogoFlat from '../assets/IconLogoFlat.svg'
 
+
+// Full document wrapper layout. Used for all pages.
 class App extends Component {
   render() {
     return (
@@ -29,18 +34,23 @@ class App extends Component {
   }
 }
 
-
+// Top bar navigation with scroll states and js class replacements.
 class TopBar extends Component {
 
     constructor(props){
       super(props);
+      // set state to hide
       this.state = {isHide:false};
 
+      // bind hidebar to this state
       this.hideBar = this.hideBar.bind(this);
+
+      // Set responsive nav to open.
       this.state = {isOpen: true};
     }
 
     click(e) {
+       // Listen for click state
         e.preventDefault();
         this.setState({isOpen: !this.state.isOpen}, function() {
             (this.state.isOpen);
@@ -48,6 +58,7 @@ class TopBar extends Component {
     }
 
     hideBar(){
+       // Scroll management of hide
        let {isHide} = this.state
        window.scrollY > this.prev?
        !isHide && this.setState({isHide:true})
@@ -64,7 +75,7 @@ class TopBar extends Component {
         window.removeEventListener('scroll',this.hideBar);
     }
     render(){
-
+        // class needed to set hidden css
         let classHide=this.state.isHide?"is-hidden ":""
         // class needed to toggle
         let classToggle = classnames(this.state.isOpen ? '' : 'nav-open');
@@ -93,6 +104,7 @@ class TopBar extends Component {
     }
 }
 
+// SubNav mounting with router paths. Tells router to mount each component at desired url path. 
 function SubNav() {
   return (
     <Switcher>
@@ -109,6 +121,7 @@ function SubNav() {
   );
 }
 
+// MainContent mounting with router paths. Tells router to mount each component at desired url path. 
 function MainContent() {
   return (
     <Switcher>

@@ -80,40 +80,26 @@ styles/
 | 
 |– components/ 
 |   |– _buttons.scss     # Buttons 
-|   |– _tile.scss        # Tiles 
+|   |– _tile.scss        # Tile 
 |   ...                  # Etc… 
 | 
-|– helpers/  
-|   |– _functions.scss   # Sass Functions 
-|   |– _mixins.scss      # Sass Mixins 
-|   |– _helpers.scss     # Class & placeholders helpers 
-|   ...                  # Etc… 
-| 
-|– layout/ 
-|   |– _grid.scss        # Grid system 
+|– layout/               # Styleguide Specific* 
 |   |– _header.scss      # Header 
 |   |– _footer.scss      # Footer 
-|   |– _sidebar.scss     # Sidebar 
-|   |– _forms.scss       # Forms 
+|   |– _main.scss        # Sidebar 
 |   ...                  # Etc… 
 | 
 |– pages/ 
-|   |– _home.scss        # Home specific styles 
-|   |– _contact.scss     # Contact specific styles 
 |   ...                  # Etc… 
 | 
-|– themes/ 
-|   |– _theme.scss       # Default theme 
-|   |– _admin.scss       # Admin theme 
-|   ...                  # Etc… 
+|– themes/               # App Specific styles (MR2 vs ICE) 
+|   |   ...              # Etc… 
 | 
 |– vendors/ 
-|   |– _bootstrap.scss   # Bootstrap 
-|   |– _jquery-ui.scss   # jQuery UI 
+|   |– _normalize.scss   # Bootstrap 
 |   ...                  # Etc… 
 | 
-| 
-`– main.scss             # primary Sass file 
+`– index.scss             # primary Sass file 
 ```
 
 #### Abstracts
@@ -168,4 +154,55 @@ Most projects will have a `vendors/` folder containing all the CSS files from ex
 If you have to override a section of any vendor, I recommend you have an 8th folder called `vendors-extensions/` in which you may have files named exactly after the vendors they overwrite. For instance, `vendors-extensions/_bootstrap.scss` is a file containing all CSS rules intended to re-declare some of Bootstrap’s default CSS. This is to avoid editing the vendor files themselves, which is generally not a good idea.
 
 Reference: [Sass Guidelines](http://sass-guidelin.es/) > [Architecture](http://sass-guidelin.es/#architecture) > [Vendors folder](http://sass-guidelin.es/#vendors-folder)
+
+
+## React File structure
+
+
+```
+src/ 
+| 
+|– assets/               # all static assets
+| 
+|– components/ 
+|   |– atoms/            # Smallest possible components
+|     |– Atoms.js        # Atoms import file with nav/routers
+|     |– Badges.js       # badge atom
+|     |– ButtonRaised.js # raised button atom
+|     ...                # Etc… 
+|
+|   |– molecules/        # Group of atoms to make component
+|     |– Molecules.js    # Molecules import file nav/routers
+|     |– Tiles.js        # Tile Molecules containing atoms
+|     ...                # Etc… 
+|
+|   |– organisms/        # App wide layout conventions
+|     |– Organism.js     # Layout import file with nav/routers
+|     ...                # Etc… 
+|
+|   |– pages/            # Styleguide specific pages
+|   |– App.js            # Main React import component file
+|
+|– mocks/                # SVG folder with static layouts
+|
+|`– index.js             # primary js file to target DOM 
+```
+
+## React Resources Used:
+
+**React Libraries:**
+
+`React`, `ReactDOM`, `ReactDOMServer`
+
+**React Plugins**
+
+- [Mobx](https://mobxjs.github.io/mobx/)
+
+- *Router method:* [Switcheroo](https://github.com/jdlehman/switcheroo) - React component that switches between components based on window.location. Router agnostic.
+
+- [Classname](https://github.com/JedWatson/classnames) - A simple javascript utility for conditionally joining classNames together
+- [React Syntax Highlighter](https://github.com/conorhastings/react-syntax-highlighter) Sane react component for syntax highlighting. (limited to strings) 
+	- There are other syntax highlighters for `React` out there so why use this one? The biggest reason is that all the others rely on triggering calls in `componentDidMount` and `componentDidUpdate` to highlight the code block and then insert it in the render function using `dangerouslySetInnerHTML` or just manually altering the DOM with native javascript. This utilizes a syntax tree to dynamically build the virtual dom which allows for updating only the changing DOM instead of completely overwriting it on any change, and because of this it is also using more idiomatic `React` and allows the use of pure function components brought into `React` as of `0.14`.
+	- Possible alternative [Code Mirror](https://github.com/JedWatson/react-codemirror) [Mulesoft and usage of Codemirror](http://ux.mulesoft.com/#/playground/Filter)– Mulesoft talk about it [youtube](https://www.youtube.com/watch?v=AwofAAThsx0)
+
 
