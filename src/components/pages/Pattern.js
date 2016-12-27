@@ -16,6 +16,7 @@ import { PatternMolecules, PatternAllMolecules, PatternAsideMolecules } from '..
 // Organisms
 import { PatternOrganism, PatternAllOrganisms, PatternAsideOrganisms } from '../organisms/Organisms'
 
+// Subnav that sorts the patterns
 export class PatternSubNav extends Component {
   render() {
     return (
@@ -30,6 +31,7 @@ export class PatternSubNav extends Component {
   }
 }
 
+// Primary content component where the components list
 export class PatternContent extends Component {
 
   constructor(props){
@@ -67,6 +69,7 @@ export class PatternContent extends Component {
   }
 }
 
+// The conponent view loaded when url is set to /pattern
 export class PatternAll extends Component {
   render() {
     return (
@@ -82,6 +85,7 @@ export class PatternAll extends Component {
   }
 }
 
+// The conponent side nav loaded when url is set to /pattern
 export class PatternAllAside extends Component {
   render() {
     return (
@@ -107,7 +111,6 @@ export class PatternAllAside extends Component {
 }
 
 // Switcher routing for pattern
-
 function PatternComponents() {
   return (
     <Switcher>
@@ -119,6 +122,7 @@ function PatternComponents() {
   );
 }
 
+// Switcher routing for side nave pattern
 function PatternAside() {
   return (
     <Switcher>

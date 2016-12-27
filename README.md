@@ -181,6 +181,7 @@ src/
 |     ...                # Etc… 
 |
 |   |– pages/            # Styleguide specific pages
+|   |– icons/            # Icons and other formatted SVG components
 |   |– App.js            # Main React import component file
 |
 |– mocks/                # SVG folder with static layouts

@@ -4,12 +4,16 @@ import ReactDOM from 'react-dom'
 import ReactDOMServer from 'react-dom/server'
 import DevTools from 'mobx-react-devtools'
 
+// React code preview dependencies
 import SyntaxHighlighter, { registerLanguage } from "react-syntax-highlighter/dist/light"
 import js from 'highlight.js/lib/languages/javascript';
 import docco from 'react-syntax-highlighter/dist/styles/docco'; 
 
+// Tell the register which langauge to preview.
 registerLanguage('javascript', js);
 
+
+// A layout section of the component. Standard for all the atoms. (Need to optimise)
 export class BadgesComponent extends Component {
   render() {
     return (
@@ -28,6 +32,7 @@ export class BadgesComponent extends Component {
   }
 }
 
+// A Components description
 export class BadgesDescription extends Component {
   render() {
     return (
@@ -40,6 +45,7 @@ export class BadgesDescription extends Component {
   }
 }
 
+// This is the placeholder for the code preview. 
 export class BadgesCode extends Component {
   render() {
 	const Code = ReactDOMServer.renderToStaticMarkup(<BadgesRaw />);
@@ -49,6 +55,7 @@ export class BadgesCode extends Component {
   }
 }
 
+// A Components Code and the render of the component. This should be the actual method and props that builds the component.
 export class BadgesRaw extends Component {
   render() {
     return (

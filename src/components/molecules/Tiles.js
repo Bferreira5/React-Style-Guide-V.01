@@ -4,19 +4,21 @@ import ReactDOM from 'react-dom'
 import ReactDOMServer from 'react-dom/server'
 import DevTools from 'mobx-react-devtools'
 
+// All assets go here. 
 import IconCopy from '../icons/IconCopy'
 import IconDelete from '../icons/IconDelete'
 
 import tileBackground from '../../assets/quick_analysis_tile.png'
 
+// React code preview dependencies
 import SyntaxHighlighter, { registerLanguage } from "react-syntax-highlighter/dist/light"
 import js from 'highlight.js/lib/languages/javascript';
 import docco from 'react-syntax-highlighter/dist/styles/docco'; 
 
+// Tell the register which langauge to preview.
 registerLanguage('javascript', js);
 
-
-
+// A layout section of the component. Standard for all the atoms. (Need to optimise)
 export class TileComponent extends Component {
   render() {
 
@@ -36,6 +38,7 @@ export class TileComponent extends Component {
   }
 }
 
+// A Components description
 export class TileDescription extends Component {
   render() {
     return (
@@ -47,6 +50,7 @@ export class TileDescription extends Component {
   }
 }
 
+// This is the placeholder for the code preview. 
 export class TileCode extends Component {
   render() {
 	// const Code = ReactDOMServer.renderToStaticMarkup(<TileRaw />);
@@ -78,6 +82,7 @@ export class TileCode extends Component {
   }
 }
 
+// A Components Code and the render of the component. This should be the actual method and props that builds the component.
 export class TileRaw extends Component {
 render() {
   let css = 'tile'

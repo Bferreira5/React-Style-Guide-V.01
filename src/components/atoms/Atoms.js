@@ -3,7 +3,7 @@ import { Provider, observer } from 'mobx-react'
 import DevTools from 'mobx-react-devtools'
 import Switcher from 'switcheroo'
 
-// Atoms
+// Atoms imported
 import { ButtonRaisedComponent } from '../atoms/ButtonRaised'
 import { BadgesComponent } from '../atoms/Badges'
 import { ButtonAddItemComponent } from '../atoms/ButtonAddItem'
@@ -19,6 +19,7 @@ import { TogglesComponent } from '../atoms/Toggles'
 import { TooltipsComponent } from '../atoms/Tooltips'
 
 
+// The list of component previews loaded in the MainContent section.
 export class PatternAtoms extends Component {
   render() {
     return (
@@ -40,6 +41,7 @@ export class PatternAtoms extends Component {
   }
 }
 
+// At the /patern/atoms url, load the atoms list only
 export class PatternAllAtoms extends Component {
   render() {
     return (
@@ -60,6 +62,7 @@ export class PatternAllAtoms extends Component {
   }
 }
 
+// The click to anchor list of atoms
 export class PatternAsideAtoms extends Component {
   render() {
     return (

@@ -4,12 +4,16 @@ import ReactDOM from 'react-dom'
 import ReactDOMServer from 'react-dom/server'
 import DevTools from 'mobx-react-devtools'
 
+// React code preview dependencies
 import SyntaxHighlighter, { registerLanguage } from "react-syntax-highlighter/dist/light"
 import js from 'highlight.js/lib/languages/javascript';
 import docco from 'react-syntax-highlighter/dist/styles/docco'; 
 
+// Tell the register which langauge to preview.
 registerLanguage('javascript', js);
 
+
+// A layout section of the component. Standard for all the atoms. (Need to optimise)
 export class ButtonRaisedComponent extends Component {
   render() {
     return (
@@ -28,6 +32,7 @@ export class ButtonRaisedComponent extends Component {
   }
 }
 
+// A Components description
 export class ButtonRaisedDescription extends Component {
   render() {
     return (
@@ -39,6 +44,7 @@ export class ButtonRaisedDescription extends Component {
   }
 }
 
+// This is the placeholder for the code preview. 
 export class ButtonRaisedCode extends Component {
   render() {
 	const Code = ReactDOMServer.renderToStaticMarkup(<ButtonRaisedRaw />);
@@ -48,6 +54,7 @@ export class ButtonRaisedCode extends Component {
   }
 }
 
+// A Components Code and the render of the component. This should be the actual method and props that builds the component.
 export class ButtonRaisedRaw extends Component {
   render() {
     return (
