@@ -96,7 +96,7 @@ styles/
 |   |   ...              # Etc… 
 | 
 |– vendors/ 
-|   |– _normalize.scss   # Bootstrap 
+|   |– _normalize.scss   # Vendor styles 
 |   ...                  # Etc… 
 | 
 `– index.scss             # primary Sass file 
@@ -206,4 +206,81 @@ src/
 	- There are other syntax highlighters for `React` out there so why use this one? The biggest reason is that all the others rely on triggering calls in `componentDidMount` and `componentDidUpdate` to highlight the code block and then insert it in the render function using `dangerouslySetInnerHTML` or just manually altering the DOM with native javascript. This utilizes a syntax tree to dynamically build the virtual dom which allows for updating only the changing DOM instead of completely overwriting it on any change, and because of this it is also using more idiomatic `React` and allows the use of pure function components brought into `React` as of `0.14`.
 	- Possible alternative [Code Mirror](https://github.com/JedWatson/react-codemirror) [Mulesoft and usage of Codemirror](http://ux.mulesoft.com/#/playground/Filter)– Mulesoft talk about it [youtube](https://www.youtube.com/watch?v=AwofAAThsx0)
 
+### Switcher Router
+
+The switcher router used in this project is a bit deft. It requires that for every new url created, a corresponding router path is created. This allows for full control over every possible route, but means your gonna have to set each one manually. Not enterprise safe for sure. 
+
+Its used here like so:
+
+**In App.js**
+
+We have a react component container:
+
+```
+// Full document wrapper layout. Used for all pages.
+class App extends Component {
+  render() {
+    return (
+      <div>
+      <TopBar/>
+        <main className="container">
+          <MainContent />
+        </main>
+      </div>
+    );
+  }
+}
+```
+
+Which `<MainContent />` is referenced in a special react function:
+
+```
+
+// MainContent mounting with router paths. Tells router to mount each component at desired url path. 
+
+function MainContent() {
+  return (
+    <Switcher>
+      <div path="/"><LandingContent /></div>
+      <div path="/design"><DesignContent /></div>
+      <div path="/pattern"><PatternContent /></div>
+        <div path="/pattern/atoms"><PatternContent /></div>     
+        <div path="/pattern/molecules"><PatternContent /></div>
+        <div path="/pattern/organisms"><PatternContent /></div>
+      <div path="/brand"><BrandContent /></div>
+      <div path="/print"><PrintContent /></div>
+      <div path="/research"><ResearchContent /></div>
+    </Switcher>
+  );
+}
+
+```
+
+This defines all possible content switching for each `path`. New url, new content loads in `<MainContent />`
+
+Linking is treated like standard html ( `<a href="#/design">Design Principles</a>` ) but will only work with a path set ( `path="/design"` ).
+
+Now that the macro router is set, there are the page specific links. If a path for `/pattern/atoms` Exists. Then we set:
+
+**pages/Pattern.js**
+
+Linking up router with components for each path.
+
+```
+
+// Switcher routing for pattern
+function PatternComponents() {
+  return (
+    <Switcher>
+      <div className="guide-components-listing" path="/pattern"><PatternAll/></div>
+        <div className="guide-components-listing" path="/pattern/atoms"><PatternAtoms/></div>
+        <div className="guide-components-listing" path="/pattern/molecules"><PatternMolecules /></div>
+        <div className="guide-components-listing" path="/pattern/organisms"><PatternOrganism /></div>
+    </Switcher>
+  );
+}
+
+```
+
+So each deeper url and path created needs a function that correctly displays the component needed at each path. Simple links pointed to switcher router functions. 
 

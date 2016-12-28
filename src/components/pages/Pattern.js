@@ -122,7 +122,7 @@ function PatternComponents() {
   );
 }
 
-// Switcher routing for side nave pattern
+// Switcher routing for side nav pattern
 function PatternAside() {
   return (
     <Switcher>
