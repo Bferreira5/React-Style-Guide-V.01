@@ -6,6 +6,7 @@
   "scripts": {
     "start": "NODE_ENV=development webpack-dev-server --content-base=www --hot --inline --watch",
     "test": "standard --verbose | snazzy && jest --coverage --verbose",
+    "deploy": "gh-pages -d build",
     "prod": "NODE_ENV=production webpack --production --progress --colors"
   },
   "dependencies": {
@@ -47,6 +48,7 @@
     "eslint": "^3.7.0",
     "eslint-plugin-react": "^6.3.0",
     "file-loader": "^0.9.0",
+    "gh-pages": "^0.12.0",
     "image-webpack-loader": "^3.0.0",
     "jest": "^16.0.1",
     "node-normalize-scss": "^1.4.0",
